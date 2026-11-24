@@ -8,11 +8,12 @@ database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
 ### Added
 - GitHub Actions workflow: PHPUnit on PHP 8.1–8.5, PHP_CodeSniffer, package build artifact.
-- PHPStan (level 6) in CI, analysed against the Joomla 5.2.6 release.
+- PHPStan (level 6) in CI, analysed against the Joomla 5.2.6 and 6.2.1 releases, including the service providers and the package install script.
 
 ### Fixed
 - The connection settings form filter implemented a non-existent interface (`Joomla\CMS\Form\Filter\FormFilterInterface` instead of `Joomla\CMS\Form\FormFilterInterface`), which would cause a fatal error when the class is loaded (saving the component Options). Found by PHPStan.
 - The action log helper checks that com_actionlogs provides an MVC factory and an ActionlogModel before using them.
+- The task plugin is created without the deprecated dispatcher argument on Joomla 6 (that call style is removed in Joomla 7); Joomla 5 still gets the dispatcher it requires.
 
 ## [1.0.0] - 2026-11-24
 

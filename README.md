@@ -313,10 +313,12 @@ vendor/bin/phpcs
 ```
 
 ```bash
-JOOMLA_ROOT=/path/to/joomla-5 vendor/bin/phpstan analyse
+JOOMLA_ROOT=/path/to/joomla vendor/bin/phpstan analyse
 ```
 
-GitHub Actions (`.github/workflows/tests.yml`) runs PHPUnit on PHP 8.1–8.5, PHPStan against a Joomla 5 release, and the coding standard check on every push to `main` and every pull request, then builds the package and uploads the zip as a workflow artifact.
+When switching `JOOMLA_ROOT` between Joomla versions, run `vendor/bin/phpstan clear-result-cache` first, otherwise PHPStan reuses the previous version's results.
+
+GitHub Actions (`.github/workflows/tests.yml`) runs PHPUnit on PHP 8.1–8.5, PHPStan against Joomla 5 and Joomla 6 releases, and the coding standard check on every push to `main` and every pull request, then builds the package and uploads the zip as a workflow artifact.
 
 Build the installable package:
 
