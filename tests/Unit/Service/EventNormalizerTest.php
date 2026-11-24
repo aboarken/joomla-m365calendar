@@ -121,8 +121,9 @@ final class EventNormalizerTest extends TestCase
             'location' => ['displayName' => str_repeat('a', 400)],
         ]));
 
-        $this->assertSame('Line1 Line2 <script>', $event?->subject, 'Control characters removed; HTML is escaped on output.');
-        $this->assertSame('', $event?->webLink);
-        $this->assertSame(255, mb_strlen((string) $event?->location));
+        $this->assertNotNull($event);
+        $this->assertSame('Line1 Line2 <script>', $event->subject, 'Control characters removed; HTML is escaped on output.');
+        $this->assertSame('', $event->webLink);
+        $this->assertSame(255, mb_strlen($event->location));
     }
 }

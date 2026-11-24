@@ -64,7 +64,7 @@ class Router extends RouterView
      * Segment for an event.
      *
      * @param   string|int  $id     Event ID.
-     * @param   array       $query  The request that is built right now.
+     * @param   array<string, mixed>  $query  The request that is built right now.
      *
      * @return  array<int, string>
      *
@@ -81,7 +81,7 @@ class Router extends RouterView
      * Event ID from a segment.
      *
      * @param   string  $segment  Segment.
-     * @param   array   $query    The request that is parsed right now.
+     * @param   array<string, mixed>  $query    The request that is parsed right now.
      *
      * @return  integer|false
      *

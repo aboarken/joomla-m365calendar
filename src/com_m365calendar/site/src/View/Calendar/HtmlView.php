@@ -76,7 +76,7 @@ class HtmlView extends BaseHtmlView
     /**
      * Month grid in month mode.
      *
-     * @var    array|null
+     * @var    array<string, mixed>|null
      * @since  1.0.0
      */
     protected $month;
@@ -116,7 +116,7 @@ class HtmlView extends BaseHtmlView
     /**
      * Data for the subscribe layout (null when hidden).
      *
-     * @var    array|null
+     * @var    array<string, mixed>|null
      * @since  1.0.0
      */
     protected $subscription;
@@ -178,7 +178,7 @@ class HtmlView extends BaseHtmlView
     /**
      * Data for the "Subscribe" button.
      *
-     * @return  array|null
+     * @return  array<string, mixed>|null
      *
      * @since   1.0.0
      */

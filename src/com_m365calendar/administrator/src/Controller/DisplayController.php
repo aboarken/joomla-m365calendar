@@ -39,7 +39,7 @@ class DisplayController extends BaseController
      * Method to display a view.
      *
      * @param   boolean  $cachable   If true, the view output will be cached
-     * @param   array    $urlparams  An array of safe URL parameters and their variable types.
+     * @param   array<string, string>  $urlparams  An array of safe URL parameters and their variable types.
      *
      * @return  static|boolean  This object to support chaining or false on failure.
      *

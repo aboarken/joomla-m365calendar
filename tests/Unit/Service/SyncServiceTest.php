@@ -10,9 +10,11 @@ declare(strict_types=1);
 namespace M365Calendar\Tests\Unit\Service;
 
 use Joomla\Component\M365calendar\Administrator\Service\CalendarRef;
+use Joomla\Component\M365calendar\Administrator\Service\NormalizedEvent;
 use Joomla\Component\M365calendar\Administrator\Service\SyncOptions;
 use Joomla\Component\M365calendar\Administrator\Service\SyncResult;
 use Joomla\Component\M365calendar\Administrator\Service\SyncService;
+use M365Calendar\Tests\Support\ArrayLogger;
 use M365Calendar\Tests\Support\FakeGraphClient;
 use M365Calendar\Tests\Support\InMemoryEventStore;
 use M365Graph\ConnectionSettings;
@@ -21,7 +23,6 @@ use M365Graph\Exception\AuthenticationException;
 use M365Graph\Exception\ConfigurationException;
 use M365Graph\Exception\ThrottledException;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\AbstractLogger;
 
 /**
  * SyncService with a mocked Graph client and an in-memory store.
@@ -32,8 +33,7 @@ final class SyncServiceTest extends TestCase
 
     private FakeGraphClient $graph;
 
-    /** @var array<int, array{level: string, message: string, context: array}> */
-    private array $logs = [];
+    private ArrayLogger $logger;
 
     private int $afterSync = 0;
 
@@ -49,25 +49,14 @@ final class SyncServiceTest extends TestCase
 
     private function service(?ConnectionSettings $settings = null, ?\Closure $factory = null): SyncService
     {
-        $logs   = &$this->logs;
-        $logger = new class ($logs) extends AbstractLogger {
-            /** @param array<int, array{level: string, message: string, context: array}> $logs */
-            public function __construct(private array &$logs)
-            {
-            }
-
-            public function log($level, \Stringable|string $message, array $context = []): void
-            {
-                $this->logs[] = ['level' => (string) $level, 'message' => (string) $message, 'context' => $context];
-            }
-        };
+        $this->logger = new ArrayLogger();
 
         return new SyncService(
             $this->store,
             $factory ?? fn (): FakeGraphClient => $this->graph,
             $settings ?? new ConnectionSettings('tenant.example.com', 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', '/x.pem', '/x.key'),
             new SyncOptions(30, 365, 'Europe/Berlin', 15),
-            $logger,
+            $this->logger,
             null,
             function (): void {
                 $this->afterSync++;
@@ -131,14 +120,15 @@ final class SyncServiceTest extends TestCase
     public function testFailureKeepsExistingDataAndRecordsStatus(): void
     {
         $path = '/users/board%2Broom%40example.com/calendarView';
-        $this->store->events[1] = ['old-data'];
+        $old = new NormalizedEvent('old', hash('sha256', 'old'), 'Old', '', new \DateTimeImmutable('2026-12-01'), new \DateTimeImmutable('2026-12-01'), false, '', [], '', null);
+        $this->store->events[1] = [$old];
         $this->graph->collections[$path] = [self::graphEvent('a'), self::graphEvent('b')];
         $this->graph->failures[$path]    = new ThrottledException('HTTP 429', 429, 'req-42');
 
         $result = $this->service()->syncAll();
 
         $this->assertFalse($result->isSuccess());
-        $this->assertSame(['old-data'], $this->store->events[1], 'Partial pages are never written.');
+        $this->assertSame([$old], $this->store->events[1], 'Partial pages are never written.');
         $this->assertSame('error', $this->store->status[1]['status']);
         $this->assertNull($this->store->status[1]['count']);
         $this->assertStringContainsString('request-id req-42', $this->store->status[1]['message']);
@@ -148,7 +138,7 @@ final class SyncServiceTest extends TestCase
         $this->assertSame('ok', $this->store->status[2]['status']);
 
         // Logged: status code and request-id only, in the dedicated category.
-        $errors = array_values(array_filter($this->logs, static fn (array $l): bool => $l['level'] === 'error'));
+        $errors = array_values(array_filter($this->logger->logs, static fn (array $l): bool => $l['level'] === 'error'));
         $this->assertCount(1, $errors);
         $this->assertSame('Calendar 1 sync failed: HTTP 429, request-id req-42', $errors[0]['message']);
         $this->assertSame(SyncService::LOG_CATEGORY, $errors[0]['context']['category']);

@@ -71,7 +71,7 @@ final class PresetFilter
         $categories = array_values(array_unique(array_filter(array_map(
             static fn ($c): string => trim((string) $c),
             (array) $params->get('preset_categories', [])
-        ), 'strlen')));
+        ), static fn (string $c): bool => $c !== '')));
 
         return new self(
             $calendars,

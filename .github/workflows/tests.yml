@@ -36,6 +36,44 @@ jobs:
       - name: Run unit tests
         run: vendor/bin/phpunit
 
+  phpstan:
+    name: PHPStan (Joomla ${{ matrix.joomla }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        joomla: ['5.2.6']
+    env:
+      JOOMLA_ROOT: ${{ github.workspace }}/.joomla
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: openssl, mbstring, zip
+          coverage: none
+
+      - name: Install dev dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Cache Joomla release
+        id: joomla-cache
+        uses: actions/cache@v4
+        with:
+          path: .joomla
+          key: joomla-${{ matrix.joomla }}
+
+      - name: Download Joomla release
+        if: steps.joomla-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -fsSL -o joomla.zip "https://github.com/joomla/joomla-cms/releases/download/${{ matrix.joomla }}/Joomla_${{ matrix.joomla }}-Stable-Full_Package.zip"
+          mkdir -p .joomla
+          unzip -q joomla.zip -d .joomla
+          rm joomla.zip
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G --error-format=github
+
   lint-and-build:
     name: Coding standard and package build
     runs-on: ubuntu-latest

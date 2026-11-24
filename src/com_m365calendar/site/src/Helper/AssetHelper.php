@@ -43,10 +43,6 @@ final class AssetHelper
      */
     public static function load(Document $document, Registry $params, array $calendars = []): void
     {
-        if (!method_exists($document, 'getWebAssetManager')) {
-            return;
-        }
-
         $wa = $document->getWebAssetManager();
         $wa->getRegistry()->addExtensionRegistryFile('com_m365calendar');
 
@@ -88,10 +84,6 @@ final class AssetHelper
      */
     public static function loadSubscribeScript(Document $document): void
     {
-        if (!method_exists($document, 'getWebAssetManager')) {
-            return;
-        }
-
         $wa = $document->getWebAssetManager();
         $wa->getRegistry()->addExtensionRegistryFile('com_m365calendar');
         $wa->useScript('m365calendar.subscribe');

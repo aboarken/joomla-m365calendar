@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace Joomla\Component\M365calendar\Administrator\Form\Filter;
 
 use Joomla\CMS\Component\ComponentHelper;
-use Joomla\CMS\Form\Filter\FormFilterInterface;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Form\FormFilterInterface;
 use Joomla\Component\M365calendar\Administrator\Field\M365connectionField;
 use Joomla\Registry\Registry;
 

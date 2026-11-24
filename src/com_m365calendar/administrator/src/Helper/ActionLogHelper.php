@@ -14,6 +14,7 @@ namespace Joomla\Component\M365calendar\Administrator\Helper;
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Factory\MVCFactoryServiceInterface;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
@@ -69,11 +70,17 @@ final class ActionLogHelper
         );
 
         try {
-            /** @var \Joomla\Component\Actionlogs\Administrator\Model\ActionlogModel $model */
-            $model = $app->bootComponent('com_actionlogs')->getMVCFactory()
-                ->createModel('Actionlog', 'Administrator', ['ignore_request' => true]);
+            $component = $app->bootComponent('com_actionlogs');
 
-            $model->addLog([$message], $messageKey, 'com_m365calendar', (int) $user->id);
+            if (!$component instanceof MVCFactoryServiceInterface) {
+                return;
+            }
+
+            $model = $component->getMVCFactory()->createModel('Actionlog', 'Administrator', ['ignore_request' => true]);
+
+            if ($model instanceof \Joomla\Component\Actionlogs\Administrator\Model\ActionlogModel) {
+                $model->addLog([$message], $messageKey, 'com_m365calendar', (int) $user->id);
+            }
         } catch (\Throwable) {
             // Logging must never break the action itself.
         }

@@ -1,8 +1,9 @@
 # PHPStan (level 6). The extension code extends Joomla core classes, so
-# PHPStan needs a Joomla 5 (or 6) installation or checkout to read them:
+# PHPStan needs a Joomla 5 (or 6) installation or release package to read them:
 #
 #   JOOMLA_ROOT=/path/to/joomla vendor/bin/phpstan analyse
 #
+# CI downloads the Joomla release named in .github/workflows/tests.yml.
 parameters:
     level: 6
     phpVersion: 80100
@@ -20,6 +21,20 @@ parameters:
     bootstrapFiles:
         - tests/phpstan-bootstrap.php
     ignoreErrors:
-        # Joomla core method signatures are untyped; overriding them keeps them untyped.
-        - identifier: missingType.iterableValue
-          path: src/com_m365calendar/*/src/Model/*
+        # Joomla types Factory::getApplication() and controllers' $this->app as the
+        # generic CMSApplicationInterface. On the site (and in the backend for
+        # getUserState) the object is a SiteApplication / AdministratorApplication,
+        # which has these methods; core Joomla code calls them the same way.
+        -
+            identifier: method.notFound
+            message: '#^Call to an undefined method Joomla\\CMS\\Application\\CMSApplicationInterface::(getMenu|getParams|getSession|getPathway|getUserState|setUserState|getUserStateFromRequest|setHeader|sendHeaders)\(\)\.$#'
+        # HtmlView::getDocument() is typed as Document, but HTML views always get an
+        # HtmlDocument, which has these methods (core views use them the same way).
+        -
+            identifier: method.notFound
+            message: '#^Call to an undefined method Joomla\\CMS\\Document\\Document::(getToolbar|addHeadLink)\(\)\.$#'
+        # AdminModel requires getForm(); Joomla's own convention for "no form" is
+        # returning false. This model is only used to delete (revoke) tokens.
+        -
+            identifier: method.childReturnType
+            path: src/com_m365calendar/administrator/src/Model/FeedtokenModel.php
