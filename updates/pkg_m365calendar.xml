@@ -11,8 +11,8 @@
         <downloads>
             <downloadurl type="full" format="zip">https://github.com/aboarken/joomla-m365calendar/releases/download/v0.1.0/pkg_m365calendar-0.1.0.zip</downloadurl>
         </downloads>
-        <!-- Replace with the value printed by build/build.php for the released zip. -->
-        <sha384>REPLACE_WITH_SHA384_OF_RELEASE_ZIP</sha384>
+        <!-- SHA-384 of the released zip (also in the release's SHA384SUMS file). -->
+        <sha384>ca23819b63993c05509d063217e2eee7343d156dc56a49b216a398113054b809eb82cb592349111f38f0d4dac3411b0e</sha384>
         <maintainer>M365 Calendar contributors</maintainer>
         <maintainerurl>https://github.com/aboarken/joomla-m365calendar</maintainerurl>
         <targetplatform name="joomla" version="(5|6)\..*"/>
