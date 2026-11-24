@@ -91,9 +91,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           version="${RELEASE_TAG#v}"
-          prerelease=""
-          # 0.x versions are published as pre-releases.
-          case "$version" in 0.*) prerelease="--prerelease" ;; esac
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             # Creates the tag on the commit this run built.
             target="--target $GITHUB_SHA"
@@ -104,4 +101,5 @@ jobs:
             "dist/pkg_m365calendar-$version.zip" dist/SHA256SUMS dist/SHA384SUMS \
             --title "Microsoft 365 Calendar $version" \
             --notes-file release-notes.md \
-            $target $prerelease
+            --latest \
+            $target

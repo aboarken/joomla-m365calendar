@@ -6,7 +6,7 @@ database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
 ## [0.1.0] - 2026-11-24
 
-First public pre-release. Not yet tested on a live Joomla site.
+First public release. Not yet tested on a live Joomla site.
 
 ### Added
 - `pkg_m365calendar` installing, in order: `lib_m365graph`, `com_m365calendar`,
