@@ -23,7 +23,7 @@ use Joomla\CMS\MVC\Model\BaseDatabaseModel;
  * Calendars list controller (publish, unpublish, delete, check-in).
  * AdminController checks the CSRF token and the ACL of every task.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarsController extends AdminController
 {
@@ -31,7 +31,7 @@ class CalendarsController extends AdminController
      * The prefix to use with controller messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $text_prefix = 'COM_M365CALENDAR_CALENDARS';
 
@@ -44,7 +44,7 @@ class CalendarsController extends AdminController
      *
      * @return  BaseDatabaseModel
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getModel($name = 'Calendar', $prefix = 'Administrator', $config = ['ignore_request' => true])
     {

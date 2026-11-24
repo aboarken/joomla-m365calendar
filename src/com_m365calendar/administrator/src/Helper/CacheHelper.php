@@ -23,7 +23,7 @@ use Joomla\CMS\Factory;
  * Cleans the component's site caches (feeds, category lists) from any
  * application (site, administrator, CLI scheduler).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class CacheHelper
 {
@@ -31,7 +31,7 @@ final class CacheHelper
      * Cache group of generated feeds.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const GROUP_FEED = 'com_m365calendar_feed';
 
@@ -39,7 +39,7 @@ final class CacheHelper
      * Cache group of query results.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const GROUP_DATA = 'com_m365calendar';
 
@@ -48,7 +48,7 @@ final class CacheHelper
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function cleanSiteCaches(): void
     {

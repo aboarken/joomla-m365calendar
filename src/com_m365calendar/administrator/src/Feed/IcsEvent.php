@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
 /**
  * The only event data that may appear in a feed or "Add to my calendar" link.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class IcsEvent
 {
@@ -36,7 +36,7 @@ final class IcsEvent
      * @param   string                   $url           Absolute URL of the event page on this site.
      * @param   \DateTimeImmutable|null  $lastModified  Last modified.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly string $uidHash,
@@ -59,7 +59,7 @@ final class IcsEvent
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fromRow(object $row, string $url = ''): self
     {

@@ -19,7 +19,7 @@ namespace M365Graph\Exception;
 /**
  * Graph returned 403: the app is not authorised for this mailbox (check RBAC scope).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class AccessDeniedException extends GraphException
 {

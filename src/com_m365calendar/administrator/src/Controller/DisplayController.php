@@ -23,7 +23,7 @@ use Joomla\CMS\Router\Route;
 /**
  * Default controller of the backend.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class DisplayController extends BaseController
 {
@@ -31,7 +31,7 @@ class DisplayController extends BaseController
      * The default view.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $default_view = 'events';
 
@@ -43,7 +43,7 @@ class DisplayController extends BaseController
      *
      * @return  static|boolean  This object to support chaining or false on failure.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($cachable = false, $urlparams = [])
     {

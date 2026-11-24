@@ -23,7 +23,7 @@ use Joomla\CMS\Cache\Controller\OutputController;
  *
  * Keys are hashed, so no IP address or token is stored in clear text.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class RateLimiter
 {
@@ -33,7 +33,7 @@ final class RateLimiter
      * @param   OutputController  $cache   Cache controller (caching forced on, lifetime = window).
      * @param   integer           $window  Window length in seconds.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly OutputController $cache, private readonly int $window = 60)
     {
@@ -47,7 +47,7 @@ final class RateLimiter
      *
      * @return  boolean  True when the request is allowed.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function hit(string $key, int $limit): bool
     {
@@ -69,7 +69,7 @@ final class RateLimiter
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function retryAfter(): int
     {

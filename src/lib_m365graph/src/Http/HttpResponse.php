@@ -19,7 +19,7 @@ namespace M365Graph\Http;
 /**
  * Minimal HTTP response value object.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class HttpResponse
 {
@@ -27,7 +27,7 @@ final class HttpResponse
      * Lower-cased header names mapped to their (first) value.
      *
      * @var    array<string, string>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private array $headers = [];
 
@@ -38,7 +38,7 @@ final class HttpResponse
      * @param   array<string, mixed>   $headers  Headers.
      * @param   string                 $body     Body.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(public readonly int $status, array $headers, public readonly string $body)
     {
@@ -54,7 +54,7 @@ final class HttpResponse
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function header(string $name): string
     {
@@ -66,7 +66,7 @@ final class HttpResponse
      *
      * @return  array<string, mixed>
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function json(): array
     {

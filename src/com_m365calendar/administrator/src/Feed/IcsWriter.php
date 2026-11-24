@@ -24,7 +24,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
  * events and a stable UID per event.
  *
  * @link   https://www.rfc-editor.org/rfc/rfc5545
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class IcsWriter
 {
@@ -32,7 +32,7 @@ final class IcsWriter
      * Line break required by RFC 5545.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const CRLF = "\r\n";
 
@@ -40,7 +40,7 @@ final class IcsWriter
      * Product identifier.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const PRODID = '-//M365 Calendar for Joomla//com_m365calendar//EN';
 
@@ -49,7 +49,7 @@ final class IcsWriter
      *
      * @param   string  $host  Site domain used in UIDs.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly string $host)
     {
@@ -65,7 +65,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function calendar(string $name, iterable $events, \DateTimeImmutable $now, string $refresh = 'PT1H'): string
     {
@@ -99,7 +99,7 @@ final class IcsWriter
      *
      * @return  string[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function eventLines(IcsEvent $event, \DateTimeImmutable $now): array
     {
@@ -151,7 +151,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function uid(IcsEvent $event): string
     {
@@ -170,7 +170,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function escapeText(string $text): string
     {
@@ -191,7 +191,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fold(string $line): string
     {
@@ -226,7 +226,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function utc(\DateTimeImmutable $date): string
     {
@@ -240,7 +240,7 @@ final class IcsWriter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function cleanUri(string $uri): string
     {

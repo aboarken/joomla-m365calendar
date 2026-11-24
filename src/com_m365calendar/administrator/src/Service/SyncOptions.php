@@ -21,7 +21,7 @@ use Joomla\Registry\Registry;
 /**
  * Sync window and behaviour options.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class SyncOptions
 {
@@ -33,7 +33,7 @@ final class SyncOptions
      * @param   string   $timezone     IANA time zone sent in the Prefer header.
      * @param   integer  $lockMinutes  Lock expiry in minutes.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly int $daysBack = 30,
@@ -51,7 +51,7 @@ final class SyncOptions
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fromParams(Registry $params, string $siteOffset): self
     {

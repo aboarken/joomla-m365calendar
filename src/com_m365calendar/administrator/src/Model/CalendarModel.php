@@ -28,7 +28,7 @@ use Joomla\Component\M365calendar\Administrator\Helper\CacheHelper;
  * Saving, deleting and publishing trigger the core content events, so the
  * core "Action Log - Joomla" plugin records them (see the install SQL).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarModel extends AdminModel
 {
@@ -36,7 +36,7 @@ class CalendarModel extends AdminModel
      * The type alias for this content type.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public $typeAlias = 'com_m365calendar.calendar';
 
@@ -44,7 +44,7 @@ class CalendarModel extends AdminModel
      * The prefix to use with controller messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $text_prefix = 'COM_M365CALENDAR_CALENDAR';
 
@@ -52,7 +52,7 @@ class CalendarModel extends AdminModel
      * Batch commands: only the access level applies to calendars.
      *
      * @var    array<string, string>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $batch_commands = ['assetgroup_id' => 'batchAccess'];
 
@@ -64,7 +64,7 @@ class CalendarModel extends AdminModel
      *
      * @return  Form|boolean  A Form object on success, false on failure
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getForm($data = [], $loadData = true)
     {
@@ -86,7 +86,7 @@ class CalendarModel extends AdminModel
      *
      * @return  mixed  The data for the form.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function loadFormData()
     {
@@ -108,7 +108,7 @@ class CalendarModel extends AdminModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function prepareTable($table)
     {
@@ -130,7 +130,7 @@ class CalendarModel extends AdminModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function cleanCache($group = null)
     {

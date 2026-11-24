@@ -19,7 +19,7 @@ namespace M365Graph\Jwt;
 /**
  * Base64url encoding without padding (RFC 7515, section 2).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class Base64Url
 {
@@ -30,7 +30,7 @@ final class Base64Url
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function encode(string $data): string
     {
@@ -44,7 +44,7 @@ final class Base64Url
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function decode(string $data): string
     {

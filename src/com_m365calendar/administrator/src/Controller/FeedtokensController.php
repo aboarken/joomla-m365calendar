@@ -25,7 +25,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Revokes users' personal feed tokens.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class FeedtokensController extends BaseController
 {
@@ -34,7 +34,7 @@ class FeedtokensController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function revoke(): void
     {

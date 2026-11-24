@@ -25,7 +25,7 @@ use Joomla\Database\DatabaseAwareTrait;
 /**
  * List of configured calendars (used for the menu item preset and admin filters).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365calendarsField extends ListField implements DatabaseAwareInterface
 {
@@ -35,7 +35,7 @@ class M365calendarsField extends ListField implements DatabaseAwareInterface
      * The form field type.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $type = 'M365calendars';
 
@@ -44,7 +44,7 @@ class M365calendarsField extends ListField implements DatabaseAwareInterface
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getOptions()
     {

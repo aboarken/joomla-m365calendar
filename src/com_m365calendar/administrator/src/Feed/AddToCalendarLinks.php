@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
 /**
  * Builds "Add to my calendar" links on the server, with URL-encoded values.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class AddToCalendarLinks
 {
@@ -30,7 +30,7 @@ final class AddToCalendarLinks
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function outlook(IcsEvent $event): string
     {
@@ -61,7 +61,7 @@ final class AddToCalendarLinks
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function google(IcsEvent $event): string
     {
@@ -87,7 +87,7 @@ final class AddToCalendarLinks
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function plain(string $text): string
     {

@@ -19,7 +19,7 @@ namespace M365Graph\Exception;
 /**
  * Graph kept returning 429/503/504 after the allowed number of retries.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class ThrottledException extends GraphException
 {

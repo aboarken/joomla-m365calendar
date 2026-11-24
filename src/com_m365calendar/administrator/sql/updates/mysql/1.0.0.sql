@@ -1,2 +1,0 @@
--- 1.0.0: initial release. The schema is created by install.mysql.utf8.sql.
--- Later versions add a file per version here (e.g. 1.1.0.sql).

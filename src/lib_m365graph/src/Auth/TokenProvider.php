@@ -27,7 +27,7 @@ use M365Graph\Jwt\ClientAssertionBuilder;
  * The token is only kept in memory on this object, for the lifetime of the
  * object (one sync run). It is never persisted, logged or exposed.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class TokenProvider
 {
@@ -35,7 +35,7 @@ final class TokenProvider
      * Graph scope for app-only access.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const SCOPE = 'https://graph.microsoft.com/.default';
 
@@ -43,7 +43,7 @@ final class TokenProvider
      * In-memory access token.
      *
      * @var    string|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private ?string $accessToken = null;
 
@@ -51,7 +51,7 @@ final class TokenProvider
      * Expiry (UNIX time) of the in-memory token.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private int $expiresAt = 0;
 
@@ -62,7 +62,7 @@ final class TokenProvider
      * @param   ClientAssertionBuilder  $assertion  JWT builder.
      * @param   HttpTransportInterface  $transport  HTTP transport.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         private readonly ConnectionSettings $settings,
@@ -78,7 +78,7 @@ final class TokenProvider
      *
      * @throws  AuthenticationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getAccessToken(): string
     {
@@ -138,7 +138,7 @@ final class TokenProvider
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function clear(): void
     {

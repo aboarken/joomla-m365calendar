@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
 /**
  * Storage of hashed feed tokens (#__m365calendar_feed_tokens).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 interface FeedTokenStoreInterface
 {
@@ -30,7 +30,7 @@ interface FeedTokenStoreInterface
      *
      * @return  array{user_id: int, token_hash: string}|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function findByHash(string $hash): ?array;
 
@@ -41,7 +41,7 @@ interface FeedTokenStoreInterface
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function hasToken(int $userId): bool;
 
@@ -54,7 +54,7 @@ interface FeedTokenStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function replace(int $userId, string $hash, \DateTimeImmutable $now): void;
 
@@ -66,7 +66,7 @@ interface FeedTokenStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function touch(string $hash, \DateTimeImmutable $now): void;
 
@@ -77,7 +77,7 @@ interface FeedTokenStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function deleteForUser(int $userId): void;
 }

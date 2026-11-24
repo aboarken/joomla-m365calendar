@@ -22,7 +22,7 @@ use Joomla\Database\ParameterType;
 /**
  * EventStoreInterface backed by the Joomla database (query builder, bound parameters).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class DatabaseEventStore implements EventStoreInterface
 {
@@ -30,7 +30,7 @@ final class DatabaseEventStore implements EventStoreInterface
      * Rows per multi-row statement.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private const CHUNK = 200;
 
@@ -39,7 +39,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @param   DatabaseInterface  $db  Database.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly DatabaseInterface $db)
     {
@@ -48,7 +48,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function acquireLock(string $owner, \DateTimeImmutable $now, \DateTimeImmutable $until): bool
     {
@@ -84,7 +84,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function releaseLock(string $owner): void
     {
@@ -103,7 +103,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getPublishedCalendars(): array
     {
@@ -130,7 +130,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function replaceEvents(int $calendarId, array $events, \DateTimeImmutable $now): int
     {
@@ -196,7 +196,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function recordStatus(int $calendarId, string $status, string $message, ?int $count, \DateTimeImmutable $now): void
     {
@@ -229,7 +229,7 @@ final class DatabaseEventStore implements EventStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function deleteOrphanFeedTokens(): int
     {
@@ -256,7 +256,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  integer  New ID.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function insertEvent(int $calendarId, NormalizedEvent $event, string $synced): int
     {
@@ -287,7 +287,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  integer  The ID.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function updateEvent(int $id, NormalizedEvent $event, string $synced): int
     {
@@ -327,7 +327,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  array<string, string|int|null>
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function values(NormalizedEvent $event, string $synced): array
     {
@@ -356,7 +356,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function deleteByIds(string $table, string $column, array $ids): void
     {
@@ -376,7 +376,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function ensureSyncRow(int $calendarId): void
     {
@@ -415,7 +415,7 @@ final class DatabaseEventStore implements EventStoreInterface
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function sql(\DateTimeImmutable $date): string
     {

@@ -24,7 +24,7 @@ use Joomla\Database\QueryInterface;
 /**
  * Calendars list model.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarsModel extends ListModel
 {
@@ -34,7 +34,7 @@ class CalendarsModel extends ListModel
      * @param   array<string, mixed>      $config   An optional associative array of configuration settings.
      * @param   MVCFactoryInterface|null  $factory  The factory.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct($config = [], ?MVCFactoryInterface $factory = null)
     {
@@ -62,7 +62,7 @@ class CalendarsModel extends ListModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function populateState($ordering = 'a.title', $direction = 'ASC')
     {
@@ -76,7 +76,7 @@ class CalendarsModel extends ListModel
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getStoreId($id = '')
     {
@@ -93,7 +93,7 @@ class CalendarsModel extends ListModel
      *
      * @return  QueryInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getListQuery()
     {

@@ -25,7 +25,7 @@ use Joomla\Component\M365calendar\Administrator\Feed\IcsEvent;
 /**
  * View helpers for events: URLs, date display, "Add to calendar" links and JSON-LD.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class EventHelper
 {
@@ -38,7 +38,7 @@ final class EventHelper
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function eventUrl(int $id, int $itemId, bool $absolute = false): string
     {
@@ -54,7 +54,7 @@ final class EventHelper
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function calendarUrl(int $itemId, array $vars = [], bool $absolute = false): string
     {
@@ -76,7 +76,7 @@ final class EventHelper
      *
      * @return  string  Absolute URL.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function publicUrl(object $row, int $itemId, bool $detailPage): string
     {
@@ -91,7 +91,7 @@ final class EventHelper
      *
      * @return  IcsEvent
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function icsEvent(object $row, string $url): IcsEvent
     {
@@ -107,7 +107,7 @@ final class EventHelper
      *
      * @return  array{outlook: string, google: string, ics: string}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function addToCalendarLinks(object $row, int $itemId, bool $detailPage): array
     {
@@ -131,7 +131,7 @@ final class EventHelper
      *
      * @return  array{start: string, end: string, startIso: string, endIso: string, allDay: bool, sameDay: bool}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function dateRange(object $row, string $dateFormat = 'DATE_FORMAT_LC1'): array
     {
@@ -180,7 +180,7 @@ final class EventHelper
      *
      * @return  string[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function categories(object $row): array
     {
@@ -198,7 +198,7 @@ final class EventHelper
      *
      * @return  string  JSON, safe to place inside a script element.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function jsonLd(array $rows, int $itemId, bool $detailPage): string
     {

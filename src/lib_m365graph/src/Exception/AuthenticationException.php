@@ -19,7 +19,7 @@ namespace M365Graph\Exception;
 /**
  * The token request was rejected (HTTP 400/401) or the token could not be obtained.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class AuthenticationException extends GraphException
 {

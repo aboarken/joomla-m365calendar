@@ -35,7 +35,7 @@ use M365Graph\Jwt\ClientAssertionBuilder;
  * with a bounded number of retries, and mapping of HTTP errors to typed
  * exceptions that carry only the status code, request-id and error code.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class Client implements GraphClientInterface
 {
@@ -43,7 +43,7 @@ final class Client implements GraphClientInterface
      * Graph base URL.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const BASE_URL = 'https://graph.microsoft.com/v1.0';
 
@@ -51,7 +51,7 @@ final class Client implements GraphClientInterface
      * Longest single wait honoured from Retry-After, in seconds.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MAX_RETRY_AFTER = 60;
 
@@ -59,7 +59,7 @@ final class Client implements GraphClientInterface
      * Safety limit for pages followed in one collection.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MAX_PAGES = 500;
 
@@ -67,7 +67,7 @@ final class Client implements GraphClientInterface
      * Sleep function (seconds).
      *
      * @var    \Closure(int): void
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $sleeper;
 
@@ -79,7 +79,7 @@ final class Client implements GraphClientInterface
      * @param   integer                     $maxRetries  Retries for throttled requests.
      * @param   (\Closure(int): void)|null  $sleeper     Sleep function for tests.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         private readonly TokenProvider $tokens,
@@ -102,7 +102,7 @@ final class Client implements GraphClientInterface
      *
      * @throws  Exception\ConfigurationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function create(ConnectionSettings $settings, string $webRoot): self
     {
@@ -117,7 +117,7 @@ final class Client implements GraphClientInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function authenticate(): void
     {
@@ -127,7 +127,7 @@ final class Client implements GraphClientInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function get(string $path, array $query = [], array $headers = []): array
     {
@@ -137,7 +137,7 @@ final class Client implements GraphClientInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getCollection(string $path, array $query = [], array $headers = []): \Generator
     {
@@ -179,7 +179,7 @@ final class Client implements GraphClientInterface
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function buildUrl(string $path, array $query = []): string
     {
@@ -202,7 +202,7 @@ final class Client implements GraphClientInterface
      *
      * @throws  GraphException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function send(string $url, array $headers): HttpResponse
     {
@@ -255,7 +255,7 @@ final class Client implements GraphClientInterface
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function retryDelay(string $retryAfter, int $attempt): int
     {
@@ -280,7 +280,7 @@ final class Client implements GraphClientInterface
      *
      * @return  GraphException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function mapError(HttpResponse $response): GraphException
     {

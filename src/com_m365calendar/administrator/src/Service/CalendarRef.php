@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
 /**
  * A configured calendar to sync.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class CalendarRef
 {
@@ -31,7 +31,7 @@ final class CalendarRef
      * @param   string   $mailbox          Mailbox (validated e-mail address).
      * @param   string   $graphCalendarId  Graph calendar ID, empty for the default calendar.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly int $id,
@@ -46,7 +46,7 @@ final class CalendarRef
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function calendarPath(): string
     {
@@ -65,7 +65,7 @@ final class CalendarRef
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function calendarViewPath(): string
     {

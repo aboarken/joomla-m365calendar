@@ -26,7 +26,7 @@ use Joomla\Plugin\Task\M365calendarsync\Extension\M365calendarsync;
 /**
  * Service provider for plg_task_m365calendarsync.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 return new class () implements ServiceProviderInterface {
     /**
@@ -36,7 +36,7 @@ return new class () implements ServiceProviderInterface {
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function register(Container $container): void
     {

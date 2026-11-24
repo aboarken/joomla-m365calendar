@@ -25,7 +25,7 @@ use Joomla\Component\M365calendar\Site\Helper\EventHelper;
 /**
  * Event detail page (opened from a Calendar page, uses its Itemid).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class HtmlView extends BaseHtmlView
 {
@@ -33,7 +33,7 @@ class HtmlView extends BaseHtmlView
      * The event.
      *
      * @var    object|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $item;
 
@@ -41,7 +41,7 @@ class HtmlView extends BaseHtmlView
      * Merged params.
      *
      * @var    \Joomla\Registry\Registry
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $params;
 
@@ -49,7 +49,7 @@ class HtmlView extends BaseHtmlView
      * Menu item ID.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $itemId = 0;
 
@@ -57,7 +57,7 @@ class HtmlView extends BaseHtmlView
      * Page class suffix.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $pageclass_sfx = '';
 
@@ -70,7 +70,7 @@ class HtmlView extends BaseHtmlView
      *
      * @throws  \Exception  404 when the event is not available here.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($tpl = null): void
     {
@@ -98,7 +98,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function prepareDocument(): void
     {

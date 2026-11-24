@@ -34,7 +34,7 @@ use Joomla\Registry\Registry;
  * filters (GET, sticky per Itemid) are ANDed with them and can never widen
  * the result. Only local tables are queried.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarModel extends ListModel
 {
@@ -42,7 +42,7 @@ class CalendarModel extends ListModel
      * Visitor filter keys and their input filters.
      *
      * @var    array<string, string>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const VISITOR_FILTERS = [
         'search'   => 'string',
@@ -59,7 +59,7 @@ class CalendarModel extends ListModel
      * Menu item param that shows each visitor filter.
      *
      * @var    array<string, string>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const VISITOR_FILTER_SWITCHES = [
         'search'   => 'filter_show_search',
@@ -76,7 +76,7 @@ class CalendarModel extends ListModel
      * Rows shown at most in the month view.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MONTH_LIMIT = 1000;
 
@@ -84,7 +84,7 @@ class CalendarModel extends ListModel
      * Cached effective filter.
      *
      * @var    EffectiveFilter|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private ?EffectiveFilter $effective = null;
 
@@ -96,7 +96,7 @@ class CalendarModel extends ListModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function populateState($ordering = null, $direction = null)
     {
@@ -177,7 +177,7 @@ class CalendarModel extends ListModel
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getStoreId($id = '')
     {
@@ -194,7 +194,7 @@ class CalendarModel extends ListModel
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getStart()
     {
@@ -206,7 +206,7 @@ class CalendarModel extends ListModel
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getItems()
     {
@@ -228,7 +228,7 @@ class CalendarModel extends ListModel
      *
      * @return  QueryInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getListQuery()
     {
@@ -240,7 +240,7 @@ class CalendarModel extends ListModel
      *
      * @return  EffectiveFilter
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getEffectiveFilter(): EffectiveFilter
     {
@@ -270,7 +270,7 @@ class CalendarModel extends ListModel
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getAccessibleCalendars(): array
     {
@@ -282,7 +282,7 @@ class CalendarModel extends ListModel
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getVisitorCalendarOptions(): array
     {
@@ -300,7 +300,7 @@ class CalendarModel extends ListModel
      *
      * @return  string[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getCategoryOptions(): array
     {
@@ -322,7 +322,7 @@ class CalendarModel extends ListModel
      *
      * @return  array{month: string, prev: string, next: string, first: string, weekdays: int[], weeks: array<int, array<int, array{date: string, day: int, inMonth: bool, today: bool, events: object[]}>>}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getMonthGrid(array $items): array
     {
@@ -387,7 +387,7 @@ class CalendarModel extends ListModel
      *
      * @return  string[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function eventDays(object $item, \DateTimeZone $tz): array
     {
@@ -420,7 +420,7 @@ class CalendarModel extends ListModel
      *
      * @return  array{0: \DateTimeImmutable, 1: \DateTimeImmutable}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function monthRange(): array
     {
@@ -442,7 +442,7 @@ class CalendarModel extends ListModel
      *
      * @return  \DateTimeZone
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function userTimezone(): \DateTimeZone
     {
@@ -460,7 +460,7 @@ class CalendarModel extends ListModel
      *
      * @return  integer[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function viewLevels(): array
     {
@@ -474,7 +474,7 @@ class CalendarModel extends ListModel
      *
      * @return  EventRepository
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getRepository(): EventRepository
     {

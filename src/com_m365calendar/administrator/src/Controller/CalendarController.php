@@ -23,7 +23,7 @@ use Joomla\CMS\Router\Route;
  * Calendar edit controller. ACL (core.create / core.edit) and CSRF checks
  * are done by FormController.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarController extends FormController
 {
@@ -31,7 +31,7 @@ class CalendarController extends FormController
      * The prefix to use with controller messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $text_prefix = 'COM_M365CALENDAR_CALENDAR';
 
@@ -42,7 +42,7 @@ class CalendarController extends FormController
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function batch($model = null)
     {

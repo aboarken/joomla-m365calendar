@@ -24,7 +24,7 @@ use M365Graph\Exception\ConfigurationException;
  * The library never reads configuration on its own: callers build this
  * value object from their own (validated) settings.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class ConnectionSettings
 {
@@ -32,7 +32,7 @@ final class ConnectionSettings
      * Regular expression for a GUID.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const GUID_PATTERN = '/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i';
 
@@ -40,7 +40,7 @@ final class ConnectionSettings
      * Regular expression for a tenant domain such as contoso.onmicrosoft.com.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const DOMAIN_PATTERN = '/^(?=.{4,253}$)([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i';
 
@@ -52,7 +52,7 @@ final class ConnectionSettings
      * @param   string  $certificatePath  Absolute path of the public certificate (PEM or DER).
      * @param   string  $privateKeyPath   Absolute path of the PEM private key.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly string $tenantId,
@@ -67,7 +67,7 @@ final class ConnectionSettings
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function isComplete(): bool
     {
@@ -86,7 +86,7 @@ final class ConnectionSettings
      *
      * @throws  ConfigurationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function validate(string $webRoot): void
     {
@@ -113,7 +113,7 @@ final class ConnectionSettings
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function isValidTenantId(string $tenantId): bool
     {
@@ -130,7 +130,7 @@ final class ConnectionSettings
      *
      * @throws  ConfigurationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function assertSafeFile(string $path, string $webRoot): void
     {
@@ -161,7 +161,7 @@ final class ConnectionSettings
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function isInside(string $realPath, string $directory): bool
     {

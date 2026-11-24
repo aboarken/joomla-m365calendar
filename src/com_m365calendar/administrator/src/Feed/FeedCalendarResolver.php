@@ -24,7 +24,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
  * levels; personal links only include calendars the user can view; and the
  * menu item's preset calendar list (if any) further restricts the set.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class FeedCalendarResolver
 {
@@ -32,7 +32,7 @@ final class FeedCalendarResolver
      * Public link mode.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MODE_PUBLIC = 'public';
 
@@ -40,7 +40,7 @@ final class FeedCalendarResolver
      * Personal link mode.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MODE_PERSONAL = 'personal';
 
@@ -55,7 +55,7 @@ final class FeedCalendarResolver
      *
      * @return  integer[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function resolve(iterable $calendars, string $mode, array $guestViewLevels, array $userViewLevels, array $presetIds): array
     {

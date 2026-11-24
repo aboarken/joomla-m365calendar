@@ -1,0 +1,2 @@
+-- 0.1.0: initial release. The schema is created by install.postgresql.utf8.sql.
+-- Later versions add a file per version here (e.g. 0.2.0.sql).

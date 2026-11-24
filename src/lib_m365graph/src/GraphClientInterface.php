@@ -19,7 +19,7 @@ namespace M365Graph;
 /**
  * Read-only Microsoft Graph client.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 interface GraphClientInterface
 {
@@ -34,7 +34,7 @@ interface GraphClientInterface
      *
      * @throws  Exception\GraphException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function get(string $path, array $query = [], array $headers = []): array;
 
@@ -49,7 +49,7 @@ interface GraphClientInterface
      *
      * @throws  Exception\GraphException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getCollection(string $path, array $query = [], array $headers = []): \Generator;
 
@@ -60,7 +60,7 @@ interface GraphClientInterface
      *
      * @throws  Exception\GraphException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function authenticate(): void;
 }

@@ -26,7 +26,7 @@ use Joomla\Event\DispatcherInterface;
 /**
  * Calendar table.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class CalendarTable extends Table
 {
@@ -34,7 +34,7 @@ class CalendarTable extends Table
      * Indicates that columns fully support the NULL value in the database.
      *
      * @var    boolean
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $_supportNullValue = true;
 
@@ -44,7 +44,7 @@ class CalendarTable extends Table
      * @param   DatabaseDriver            $db          Database connector object.
      * @param   DispatcherInterface|null  $dispatcher  Event dispatcher for this table.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(DatabaseDriver $db, ?DispatcherInterface $dispatcher = null)
     {
@@ -58,7 +58,7 @@ class CalendarTable extends Table
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function check()
     {
@@ -110,7 +110,7 @@ class CalendarTable extends Table
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function store($updateNulls = true)
     {
@@ -140,7 +140,7 @@ class CalendarTable extends Table
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function delete($pk = null)
     {

@@ -19,7 +19,7 @@ namespace M365Graph\Exception;
 /**
  * Graph returned 404: mailbox or calendar not found.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class NotFoundException extends GraphException
 {

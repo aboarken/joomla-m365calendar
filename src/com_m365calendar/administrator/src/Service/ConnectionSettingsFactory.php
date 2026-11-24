@@ -22,7 +22,7 @@ use M365Graph\ConnectionSettings;
 /**
  * Builds the library's ConnectionSettings from the component options.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class ConnectionSettingsFactory
 {
@@ -33,7 +33,7 @@ final class ConnectionSettingsFactory
      *
      * @return  ConnectionSettings
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fromParams(Registry $params): ConnectionSettings
     {

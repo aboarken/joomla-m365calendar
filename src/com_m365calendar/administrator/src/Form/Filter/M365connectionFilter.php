@@ -28,7 +28,7 @@ use Joomla\Registry\Registry;
  * Trims the value and, for users without core.admin, replaces any submitted
  * value with the stored one, so only core.admin can change the "Connection" tab.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365connectionFilter implements FormFilterInterface
 {
@@ -43,7 +43,7 @@ class M365connectionFilter implements FormFilterInterface
      *
      * @return  mixed   The filtered value.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function filter(\SimpleXMLElement $element, $value, $group = null, ?Registry $input = null, ?Form $form = null)
     {

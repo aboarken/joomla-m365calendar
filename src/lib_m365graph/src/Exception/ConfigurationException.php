@@ -19,7 +19,7 @@ namespace M365Graph\Exception;
 /**
  * Invalid or incomplete connection settings.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class ConfigurationException extends \InvalidArgumentException
 {
@@ -29,7 +29,7 @@ class ConfigurationException extends \InvalidArgumentException
      * @param   string  $message  Technical message.
      * @param   string  $reason   Short machine-readable reason, e.g. "path_in_webroot".
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(string $message, private readonly string $reason = '')
     {
@@ -41,7 +41,7 @@ class ConfigurationException extends \InvalidArgumentException
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getReason(): string
     {

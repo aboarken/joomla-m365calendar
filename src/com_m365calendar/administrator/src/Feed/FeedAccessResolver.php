@@ -22,7 +22,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
  * Returns null (the controller answers 404) for unknown tokens, deleted users
  * and blocked users. A token for a deleted user is removed.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class FeedAccessResolver
 {
@@ -30,7 +30,7 @@ final class FeedAccessResolver
      * Loads a user: fn (int $id): ?array{blocked: bool, viewLevels: int[]}; null when the user does not exist.
      *
      * @var    \Closure
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $userLoader;
 
@@ -40,7 +40,7 @@ final class FeedAccessResolver
      * @param   FeedTokenService  $tokens      Token service.
      * @param   \Closure          $userLoader  User loader.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly FeedTokenService $tokens, \Closure $userLoader)
     {
@@ -54,7 +54,7 @@ final class FeedAccessResolver
      *
      * @return  FeedPrincipal|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function resolve(string $token): ?FeedPrincipal
     {

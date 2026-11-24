@@ -26,7 +26,7 @@ use Joomla\Database\QueryInterface;
 /**
  * Read-only list of synced events, plus per-calendar sync status.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class EventsModel extends ListModel
 {
@@ -36,7 +36,7 @@ class EventsModel extends ListModel
      * @param   array<string, mixed>      $config   An optional associative array of configuration settings.
      * @param   MVCFactoryInterface|null  $factory  The factory.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct($config = [], ?MVCFactoryInterface $factory = null)
     {
@@ -63,7 +63,7 @@ class EventsModel extends ListModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function populateState($ordering = 'e.start_utc', $direction = 'ASC')
     {
@@ -77,7 +77,7 @@ class EventsModel extends ListModel
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getStoreId($id = '')
     {
@@ -93,7 +93,7 @@ class EventsModel extends ListModel
      *
      * @return  QueryInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getListQuery()
     {
@@ -161,7 +161,7 @@ class EventsModel extends ListModel
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getSyncStatus(): array
     {
@@ -186,7 +186,7 @@ class EventsModel extends ListModel
      *
      * @return  object|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getLock(): ?object
     {

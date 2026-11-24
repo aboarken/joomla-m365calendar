@@ -24,7 +24,7 @@ use M365Graph\ConnectionSettings;
 /**
  * Validates a tenant ID: a GUID or a verified domain, or empty.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365tenantRule extends FormRule
 {
@@ -39,7 +39,7 @@ class M365tenantRule extends FormRule
      *
      * @return  boolean  True if the value is valid, false otherwise.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function test(\SimpleXMLElement $element, $value, $group = null, ?Registry $input = null, ?Form $form = null)
     {

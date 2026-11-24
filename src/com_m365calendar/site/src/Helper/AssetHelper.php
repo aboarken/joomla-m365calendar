@@ -26,7 +26,7 @@ use Joomla\Registry\Registry;
  * Bootstrap and jQuery are never bundled: by default the template provides
  * them; optionally Joomla core's registered assets are used.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class AssetHelper
 {
@@ -39,7 +39,7 @@ final class AssetHelper
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function load(Document $document, Registry $params, array $calendars = []): void
     {
@@ -80,7 +80,7 @@ final class AssetHelper
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function loadSubscribeScript(Document $document): void
     {

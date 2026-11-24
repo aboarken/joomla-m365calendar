@@ -22,7 +22,7 @@ use Joomla\CMS\MVC\Controller\BaseController;
 /**
  * Site display controller.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class DisplayController extends BaseController
 {
@@ -30,7 +30,7 @@ class DisplayController extends BaseController
      * The default view.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $default_view = 'calendar';
 
@@ -44,7 +44,7 @@ class DisplayController extends BaseController
      *
      * @return  static
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($cachable = false, $urlparams = [])
     {

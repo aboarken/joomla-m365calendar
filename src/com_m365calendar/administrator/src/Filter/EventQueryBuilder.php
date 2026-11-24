@@ -23,7 +23,7 @@ use Joomla\Database\QueryInterface;
 /**
  * Applies an EffectiveFilter to an events query. Every value is bound.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class EventQueryBuilder
 {
@@ -32,7 +32,7 @@ final class EventQueryBuilder
      *
      * @param   DatabaseInterface  $db  Database (for quoting names).
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly DatabaseInterface $db)
     {
@@ -47,7 +47,7 @@ final class EventQueryBuilder
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function apply(QueryInterface $query, EffectiveFilter $filter, string $alias = 'e'): void
     {
@@ -110,7 +110,7 @@ final class EventQueryBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function likePattern(string $term): string
     {
@@ -128,7 +128,7 @@ final class EventQueryBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function bindOne(QueryInterface $query, string $value): string
     {
@@ -142,7 +142,7 @@ final class EventQueryBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function sql(\DateTimeImmutable $date): string
     {

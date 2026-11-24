@@ -22,7 +22,7 @@ namespace M365Graph\Exception;
  * Only the HTTP status code, the request-id and the service error code are
  * kept; response bodies and tokens are never part of the exception.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class GraphException extends \RuntimeException
 {
@@ -35,7 +35,7 @@ class GraphException extends \RuntimeException
      * @param   string           $errorCode   Service error code, e.g. ErrorAccessDenied.
      * @param   \Throwable|null  $previous    Previous exception.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         string $message,
@@ -52,7 +52,7 @@ class GraphException extends \RuntimeException
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getStatusCode(): int
     {
@@ -64,7 +64,7 @@ class GraphException extends \RuntimeException
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getRequestId(): string
     {
@@ -76,7 +76,7 @@ class GraphException extends \RuntimeException
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getErrorCode(): string
     {

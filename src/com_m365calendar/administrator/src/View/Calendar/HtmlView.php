@@ -25,7 +25,7 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 /**
  * Calendar edit view.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class HtmlView extends BaseHtmlView
 {
@@ -33,7 +33,7 @@ class HtmlView extends BaseHtmlView
      * The form.
      *
      * @var    \Joomla\CMS\Form\Form
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $form;
 
@@ -41,7 +41,7 @@ class HtmlView extends BaseHtmlView
      * The item.
      *
      * @var    object
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $item;
 
@@ -52,7 +52,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($tpl = null): void
     {
@@ -76,7 +76,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function addToolbar(): void
     {
