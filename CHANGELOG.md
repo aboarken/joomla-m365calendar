@@ -4,9 +4,15 @@ All notable changes to this project are documented here. The project uses
 [Semantic Versioning](https://semver.org/). Every version that changes the
 database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
+## [Unreleased]
+
+### Changed
+- Release workflow: releases are published as normal releases marked as latest, not as pre-releases.
+- CI: PHPStan also runs against Joomla 5.4.11, the latest 5.x release (alongside 5.2.6 and 6.2.1).
+
 ## [0.1.0] - 2026-11-24
 
-First public pre-release. Not yet tested on a live Joomla site.
+First public release. Not yet tested on a live Joomla site.
 
 ### Added
 - `pkg_m365calendar` installing, in order: `lib_m365graph`, `com_m365calendar`,

@@ -42,7 +42,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        joomla: ['5.2.6', '6.2.1']
+        # 5.2.6: oldest tested 5.x (older plugin constructor); 5.4.11: latest 5.x; 6.2.1: latest 6.x.
+        joomla: ['5.2.6', '5.4.11', '6.2.1']
     env:
       JOOMLA_ROOT: ${{ github.workspace }}/.joomla
     steps:
