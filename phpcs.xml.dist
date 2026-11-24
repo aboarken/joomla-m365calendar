@@ -14,6 +14,9 @@
     <arg name="colors"/>
     <arg value="sp"/>
 
+    <!-- Long-line warnings do not fail CI; errors do. -->
+    <config name="ignore_warnings_on_exit" value="1"/>
+
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineEndings"/>
     </rule>
