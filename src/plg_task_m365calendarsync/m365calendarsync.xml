@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="task" method="upgrade">
+    <name>plg_task_m365calendarsync</name>
+    <version>1.0.0</version>
+    <creationDate>2026-11</creationDate>
+    <author>M365 Calendar contributors</author>
+    <copyright>(C) 2026 M365 Calendar contributors</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <description>PLG_TASK_M365CALENDARSYNC_XML_DESCRIPTION</description>
+    <namespace path="src">Joomla\Plugin\Task\M365calendarsync</namespace>
+    <files>
+        <folder plugin="m365calendarsync">services</folder>
+        <folder>src</folder>
+    </files>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/plg_task_m365calendarsync.ini</language>
+        <language tag="en-GB">en-GB/plg_task_m365calendarsync.sys.ini</language>
+    </languages>
+</extension>

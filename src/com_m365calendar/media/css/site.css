@@ -1,0 +1,93 @@
+/*
+ * com_m365calendar - minimal styles. Everything else comes from the
+ * template's Bootstrap 5. All rules are scoped under .m365calendar.
+ */
+.m365calendar {
+  --m365calendar-color: var(--bs-primary, #0d6efd);
+  --m365calendar-muted: var(--bs-secondary-color, #595c5f);
+  --m365calendar-today: var(--bs-primary-bg-subtle, #cfe2ff);
+}
+
+.m365calendar .m365calendar-card {
+  border-inline-start: 0.35rem solid var(--m365calendar-color);
+}
+
+.m365calendar .m365calendar-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: var(--m365calendar-color);
+  vertical-align: middle;
+}
+
+.m365calendar .m365calendar-subscribe > summary,
+.m365calendar .m365calendar-add > summary {
+  list-style: none;
+}
+
+.m365calendar .m365calendar-subscribe > summary::-webkit-details-marker,
+.m365calendar .m365calendar-add > summary::-webkit-details-marker {
+  display: none;
+}
+
+.m365calendar .m365calendar-subscribe-panel {
+  max-width: 36rem;
+  background-color: var(--bs-body-bg, #fff);
+}
+
+.m365calendar .m365calendar-add-menu {
+  background-color: var(--bs-body-bg, #fff);
+  min-width: 14rem;
+}
+
+.m365calendar .m365calendar-add-menu a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Month grid */
+.m365calendar .m365calendar-month-grid {
+  table-layout: fixed;
+  min-width: 42rem;
+}
+
+.m365calendar .m365calendar-day {
+  height: 7rem;
+  vertical-align: top;
+  padding: 0.25rem;
+}
+
+.m365calendar .m365calendar-day-outside {
+  color: var(--m365calendar-muted);
+  background-color: var(--bs-tertiary-bg, #f8f9fa);
+}
+
+.m365calendar .m365calendar-day-today {
+  background-color: var(--m365calendar-today);
+}
+
+.m365calendar .m365calendar-day-number {
+  font-weight: 600;
+  text-align: end;
+}
+
+.m365calendar .m365calendar-month-event {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  margin-bottom: 0.125rem;
+  padding-inline-start: 0.35rem;
+  border-inline-start: 0.2rem solid var(--m365calendar-color);
+  overflow-wrap: anywhere;
+}
+
+.m365calendar .m365calendar-time {
+  font-variant-numeric: tabular-nums;
+  margin-inline-end: 0.25rem;
+}
+
+.m365calendar a:focus-visible,
+.m365calendar summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

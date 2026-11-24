@@ -1,0 +1,25 @@
+# PHPStan (level 6). The extension code extends Joomla core classes, so
+# PHPStan needs a Joomla 5 (or 6) installation or checkout to read them:
+#
+#   JOOMLA_ROOT=/path/to/joomla vendor/bin/phpstan analyse
+#
+parameters:
+    level: 6
+    phpVersion: 80100
+    paths:
+        - src/lib_m365graph/src
+        - src/com_m365calendar/administrator/src
+        - src/com_m365calendar/site/src
+        - src/plg_task_m365calendarsync/src
+        - tests
+    scanDirectories:
+        - %env.JOOMLA_ROOT%/libraries/src
+        - %env.JOOMLA_ROOT%/libraries/vendor
+        - %env.JOOMLA_ROOT%/administrator/components/com_scheduler/src
+        - %env.JOOMLA_ROOT%/administrator/components/com_actionlogs/src
+    bootstrapFiles:
+        - tests/phpstan-bootstrap.php
+    ignoreErrors:
+        # Joomla core method signatures are untyped; overriding them keeps them untyped.
+        - identifier: missingType.iterableValue
+          path: src/com_m365calendar/*/src/Model/*

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!-- Event pages have no menu item type of their own: they open from a Calendar page and use its Itemid. -->
+    <layout title="COM_M365CALENDAR_EVENT_VIEW_DEFAULT_TITLE" hidden="true">
+        <message><![CDATA[COM_M365CALENDAR_EVENT_VIEW_DEFAULT_DESC]]></message>
+    </layout>
+</metadata>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <layout title="COM_M365CALENDAR_CALENDAR_VIEW_DEFAULT_TITLE">
+        <message><![CDATA[COM_M365CALENDAR_CALENDAR_VIEW_DEFAULT_DESC]]></message>
+    </layout>
+    <fields name="params">
+        <fieldset
+            name="m365calendar"
+            label="COM_M365CALENDAR_MENU_OPTIONS_LABEL"
+            addfieldprefix="Joomla\Component\M365calendar\Administrator\Field"
+        >
+            <!-- Display -->
+            <field name="heading_display" type="note" heading="h3" label="COM_M365CALENDAR_MENU_HEADING_DISPLAY" />
+            <field
+                name="display_mode"
+                type="list"
+                label="COM_M365CALENDAR_MENU_DISPLAY_MODE_LABEL"
+                default="list"
+                validate="options"
+            >
+                <option value="list">COM_M365CALENDAR_MODE_LIST</option>
+                <option value="month">COM_M365CALENDAR_MODE_MONTH</option>
+            </field>
+            <field
+                name="show_view_toggle"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_VIEW_TOGGLE_LABEL"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+            >
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field
+                name="events_per_page"
+                type="number"
+                label="COM_M365CALENDAR_MENU_EVENTS_PER_PAGE_LABEL"
+                min="1"
+                max="100"
+                filter="integer"
+                useglobal="true"
+            />
+            <field
+                name="default_ordering"
+                type="list"
+                label="COM_M365CALENDAR_MENU_DEFAULT_ORDERING_LABEL"
+                default="start_asc"
+                validate="options"
+            >
+                <option value="start_asc">COM_M365CALENDAR_SORT_DATE_ASC</option>
+                <option value="start_desc">COM_M365CALENDAR_SORT_DATE_DESC</option>
+                <option value="title_asc">COM_M365CALENDAR_SORT_TITLE</option>
+            </field>
+            <field
+                name="show_detail_page"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_DETAIL_PAGE_LABEL"
+                description="COM_M365CALENDAR_MENU_SHOW_DETAIL_PAGE_DESC"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field
+                name="show_weblink"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_WEBLINK_LABEL"
+                description="COM_M365CALENDAR_MENU_SHOW_WEBLINK_DESC"
+                layout="joomla.form.field.radio.switcher"
+                default="0"
+                filter="integer"
+                showon="show_detail_page:1"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field
+                name="show_jsonld"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_JSONLD_LABEL"
+                description="COM_M365CALENDAR_MENU_SHOW_JSONLD_DESC"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+
+            <!-- Preset filters -->
+            <field name="heading_preset" type="note" heading="h3" label="COM_M365CALENDAR_MENU_HEADING_PRESET" description="COM_M365CALENDAR_MENU_HEADING_PRESET_DESC" />
+            <field
+                name="preset_calendars"
+                type="M365calendars"
+                label="COM_M365CALENDAR_MENU_PRESET_CALENDARS_LABEL"
+                description="COM_M365CALENDAR_MENU_PRESET_CALENDARS_DESC"
+                multiple="true"
+                layout="joomla.form.field.list-fancy-select"
+                filter="intarray"
+            />
+            <field
+                name="preset_categories"
+                type="M365categories"
+                label="COM_M365CALENDAR_MENU_PRESET_CATEGORIES_LABEL"
+                description="COM_M365CALENDAR_MENU_PRESET_CATEGORIES_DESC"
+                multiple="true"
+                layout="joomla.form.field.list-fancy-select"
+                filter="array"
+            />
+            <field
+                name="preset_location"
+                type="text"
+                label="COM_M365CALENDAR_MENU_PRESET_LOCATION_LABEL"
+                maxlength="100"
+                filter="string"
+            />
+            <field
+                name="preset_keyword"
+                type="text"
+                label="COM_M365CALENDAR_MENU_PRESET_KEYWORD_LABEL"
+                maxlength="100"
+                filter="string"
+            />
+            <field
+                name="preset_time_range"
+                type="list"
+                label="COM_M365CALENDAR_MENU_PRESET_TIME_RANGE_LABEL"
+                default="all"
+                validate="options"
+            >
+                <option value="all">COM_M365CALENDAR_TIME_ALL</option>
+                <option value="upcoming">COM_M365CALENDAR_TIME_UPCOMING</option>
+                <option value="past">COM_M365CALENDAR_TIME_PAST</option>
+            </field>
+            <field
+                name="preset_date_mode"
+                type="list"
+                label="COM_M365CALENDAR_MENU_PRESET_DATE_MODE_LABEL"
+                default="none"
+                validate="options"
+            >
+                <option value="none">COM_M365CALENDAR_DATE_MODE_NONE</option>
+                <option value="next">COM_M365CALENDAR_DATE_MODE_NEXT</option>
+                <option value="last">COM_M365CALENDAR_DATE_MODE_LAST</option>
+                <option value="fixed">COM_M365CALENDAR_DATE_MODE_FIXED</option>
+            </field>
+            <field
+                name="preset_days"
+                type="number"
+                label="COM_M365CALENDAR_MENU_PRESET_DAYS_LABEL"
+                default="30"
+                min="1"
+                max="3650"
+                filter="integer"
+                showon="preset_date_mode:next,last"
+            />
+            <field
+                name="preset_date_from"
+                type="calendar"
+                label="COM_M365CALENDAR_MENU_PRESET_DATE_FROM_LABEL"
+                format="%Y-%m-%d"
+                translateformat="false"
+                showtime="false"
+                filter="string"
+                showon="preset_date_mode:fixed"
+            />
+            <field
+                name="preset_date_to"
+                type="calendar"
+                label="COM_M365CALENDAR_MENU_PRESET_DATE_TO_LABEL"
+                format="%Y-%m-%d"
+                translateformat="false"
+                showtime="false"
+                filter="string"
+                showon="preset_date_mode:fixed"
+            />
+            <field
+                name="preset_event_type"
+                type="list"
+                label="COM_M365CALENDAR_MENU_PRESET_EVENT_TYPE_LABEL"
+                default="all"
+                validate="options"
+            >
+                <option value="all">COM_M365CALENDAR_TYPE_ALL</option>
+                <option value="allday">COM_M365CALENDAR_TYPE_ALLDAY_ONLY</option>
+                <option value="timed">COM_M365CALENDAR_TYPE_TIMED_ONLY</option>
+            </field>
+
+            <!-- Visitor filters -->
+            <field name="heading_visitor" type="note" heading="h3" label="COM_M365CALENDAR_MENU_HEADING_VISITOR" description="COM_M365CALENDAR_MENU_HEADING_VISITOR_DESC" />
+            <field
+                name="show_filter_bar"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_FILTER_BAR_LABEL"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+            >
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_search" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_SEARCH_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_dates" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_DATES_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_calendar" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_CALENDAR_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_category" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_CATEGORY_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_location" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_LOCATION_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_type" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_TYPE_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_time" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_TIME_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+            <field name="filter_show_sort" type="radio" label="COM_M365CALENDAR_MENU_FILTER_SHOW_SORT_LABEL" layout="joomla.form.field.radio.switcher" default="1" filter="integer" showon="show_filter_bar:1">
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+
+            <!-- Calendar subscription -->
+            <field name="heading_subscription" type="note" heading="h3" label="COM_M365CALENDAR_MENU_HEADING_SUBSCRIPTION" />
+            <field
+                name="feed_mode"
+                type="list"
+                label="COM_M365CALENDAR_MENU_FEED_MODE_LABEL"
+                description="COM_M365CALENDAR_MENU_FEED_MODE_DESC"
+                default="none"
+                validate="options"
+            >
+                <option value="none">JNO</option>
+                <option value="public">COM_M365CALENDAR_FEED_MODE_PUBLIC</option>
+                <option value="personal">COM_M365CALENDAR_FEED_MODE_PERSONAL</option>
+            </field>
+            <field
+                name="feed_public_warning"
+                type="note"
+                class="alert alert-warning"
+                label="COM_M365CALENDAR_MENU_FEED_PUBLIC_WARNING_LABEL"
+                description="COM_M365CALENDAR_MENU_FEED_PUBLIC_WARNING"
+                showon="feed_mode:public"
+            />
+            <field
+                name="show_add_to_calendar"
+                type="radio"
+                label="COM_M365CALENDAR_MENU_SHOW_ADD_TO_CALENDAR_LABEL"
+                layout="joomla.form.field.radio.switcher"
+                default="1"
+                filter="integer"
+            >
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field
+                name="feed_days_ahead"
+                type="number"
+                label="COM_M365CALENDAR_MENU_FEED_DAYS_AHEAD_LABEL"
+                default="180"
+                min="1"
+                max="1095"
+                filter="integer"
+                showon="feed_mode!:none"
+            />
+            <field
+                name="feed_days_back"
+                type="number"
+                label="COM_M365CALENDAR_MENU_FEED_DAYS_BACK_LABEL"
+                default="30"
+                min="0"
+                max="730"
+                filter="integer"
+                showon="feed_mode!:none"
+            />
+        </fieldset>
+    </fields>
+</metadata>

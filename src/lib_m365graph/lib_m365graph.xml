@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="library" method="upgrade">
+    <name>LIB_M365GRAPH</name>
+    <libraryname>m365graph</libraryname>
+    <version>1.0.0</version>
+    <creationDate>2026-11</creationDate>
+    <author>M365 Calendar contributors</author>
+    <copyright>(C) 2026 M365 Calendar contributors</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <description>LIB_M365GRAPH_XML_DESCRIPTION</description>
+    <namespace path="src">M365Graph</namespace>
+    <files>
+        <folder>src</folder>
+    </files>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/lib_m365graph.sys.ini</language>
+    </languages>
+</extension>

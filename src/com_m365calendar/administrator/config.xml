@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <inlinehelp button="show"/>
+    <fieldset
+        name="connection"
+        label="COM_M365CALENDAR_CONFIG_CONNECTION_LABEL"
+        description="COM_M365CALENDAR_CONFIG_CONNECTION_DESC"
+        addfieldprefix="Joomla\Component\M365calendar\Administrator\Field"
+        addruleprefix="Joomla\Component\M365calendar\Administrator\Rule"
+        addfilterprefix="Joomla\Component\M365calendar\Administrator\Form\Filter"
+    >
+        <field
+            name="connection_note"
+            type="note"
+            class="alert alert-info"
+            description="COM_M365CALENDAR_CONFIG_CONNECTION_NOTE"
+        />
+        <field
+            name="tenant_id"
+            type="M365connection"
+            label="COM_M365CALENDAR_CONFIG_TENANT_ID_LABEL"
+            description="COM_M365CALENDAR_CONFIG_TENANT_ID_DESC"
+            hint="00000000-0000-0000-0000-000000000000"
+            filter="M365connection"
+            validate="M365tenant"
+            message="COM_M365CALENDAR_CONFIG_TENANT_ID_INVALID"
+            maxlength="253"
+            autocomplete="off"
+        />
+        <field
+            name="client_id"
+            type="M365connection"
+            label="COM_M365CALENDAR_CONFIG_CLIENT_ID_LABEL"
+            description="COM_M365CALENDAR_CONFIG_CLIENT_ID_DESC"
+            hint="00000000-0000-0000-0000-000000000000"
+            filter="M365connection"
+            validate="M365guid"
+            message="COM_M365CALENDAR_CONFIG_CLIENT_ID_INVALID"
+            maxlength="36"
+            autocomplete="off"
+        />
+        <field
+            name="certificate_path"
+            type="M365connection"
+            label="COM_M365CALENDAR_CONFIG_CERTIFICATE_PATH_LABEL"
+            description="COM_M365CALENDAR_CONFIG_CERTIFICATE_PATH_DESC"
+            hint="/etc/joomla-m365calendar/m365calendar.cer"
+            filter="M365connection"
+            validate="M365keyfile"
+            filetype="certificate"
+            maxlength="1024"
+            autocomplete="off"
+        />
+        <field
+            name="private_key_path"
+            type="M365connection"
+            label="COM_M365CALENDAR_CONFIG_PRIVATE_KEY_PATH_LABEL"
+            description="COM_M365CALENDAR_CONFIG_PRIVATE_KEY_PATH_DESC"
+            hint="/etc/joomla-m365calendar/m365calendar.key"
+            filter="M365connection"
+            validate="M365keyfile"
+            filetype="privatekey"
+            maxlength="1024"
+            autocomplete="off"
+        />
+    </fieldset>
+
+    <fieldset name="sync" label="COM_M365CALENDAR_CONFIG_SYNC_LABEL">
+        <field
+            name="sync_days_back"
+            type="number"
+            label="COM_M365CALENDAR_CONFIG_SYNC_DAYS_BACK_LABEL"
+            description="COM_M365CALENDAR_CONFIG_SYNC_DAYS_BACK_DESC"
+            default="30"
+            min="0"
+            max="730"
+            filter="integer"
+            validate="number"
+        />
+        <field
+            name="sync_days_ahead"
+            type="number"
+            label="COM_M365CALENDAR_CONFIG_SYNC_DAYS_AHEAD_LABEL"
+            description="COM_M365CALENDAR_CONFIG_SYNC_DAYS_AHEAD_DESC"
+            default="365"
+            min="1"
+            max="1095"
+            filter="integer"
+            validate="number"
+        />
+        <field
+            name="timezone"
+            type="timezone"
+            label="COM_M365CALENDAR_CONFIG_TIMEZONE_LABEL"
+            description="COM_M365CALENDAR_CONFIG_TIMEZONE_DESC"
+            default=""
+            layout="joomla.form.field.groupedlist-fancy-select"
+        >
+            <option value="">COM_M365CALENDAR_CONFIG_TIMEZONE_SITE</option>
+        </field>
+        <field
+            name="lock_minutes"
+            type="number"
+            label="COM_M365CALENDAR_CONFIG_LOCK_MINUTES_LABEL"
+            description="COM_M365CALENDAR_CONFIG_LOCK_MINUTES_DESC"
+            default="15"
+            min="2"
+            max="120"
+            filter="integer"
+            validate="number"
+        />
+    </fieldset>
+
+    <fieldset name="display" label="COM_M365CALENDAR_CONFIG_DISPLAY_LABEL">
+        <field
+            name="events_per_page"
+            type="number"
+            label="COM_M365CALENDAR_CONFIG_EVENTS_PER_PAGE_LABEL"
+            default="20"
+            min="1"
+            max="100"
+            filter="integer"
+            validate="number"
+        />
+        <field
+            name="date_format"
+            type="list"
+            label="COM_M365CALENDAR_CONFIG_DATE_FORMAT_LABEL"
+            default="DATE_FORMAT_LC1"
+            validate="options"
+        >
+            <option value="DATE_FORMAT_LC1">COM_M365CALENDAR_CONFIG_DATE_FORMAT_LC1</option>
+            <option value="DATE_FORMAT_LC3">COM_M365CALENDAR_CONFIG_DATE_FORMAT_LC3</option>
+            <option value="DATE_FORMAT_LC4">COM_M365CALENDAR_CONFIG_DATE_FORMAT_LC4</option>
+        </field>
+        <field
+            name="week_start"
+            type="list"
+            label="COM_M365CALENDAR_CONFIG_WEEK_START_LABEL"
+            default="1"
+            filter="integer"
+            validate="options"
+        >
+            <option value="1">MONDAY</option>
+            <option value="0">SUNDAY</option>
+        </field>
+        <field
+            name="show_location"
+            type="radio"
+            label="COM_M365CALENDAR_CONFIG_SHOW_LOCATION_LABEL"
+            layout="joomla.form.field.radio.switcher"
+            default="1"
+            filter="integer"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field
+            name="show_categories"
+            type="radio"
+            label="COM_M365CALENDAR_CONFIG_SHOW_CATEGORIES_LABEL"
+            layout="joomla.form.field.radio.switcher"
+            default="1"
+            filter="integer"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+        <field
+            name="show_calendar_name"
+            type="radio"
+            label="COM_M365CALENDAR_CONFIG_SHOW_CALENDAR_NAME_LABEL"
+            layout="joomla.form.field.radio.switcher"
+            default="1"
+            filter="integer"
+        >
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="assets" label="COM_M365CALENDAR_CONFIG_ASSETS_LABEL" description="COM_M365CALENDAR_CONFIG_ASSETS_DESC">
+        <field
+            name="bootstrap"
+            type="list"
+            label="COM_M365CALENDAR_CONFIG_BOOTSTRAP_LABEL"
+            description="COM_M365CALENDAR_CONFIG_BOOTSTRAP_DESC"
+            default="template"
+            validate="options"
+        >
+            <option value="template">COM_M365CALENDAR_CONFIG_ASSET_TEMPLATE</option>
+            <option value="core">COM_M365CALENDAR_CONFIG_ASSET_CORE</option>
+            <option value="none">COM_M365CALENDAR_CONFIG_ASSET_NONE</option>
+        </field>
+        <field
+            name="jquery"
+            type="list"
+            label="COM_M365CALENDAR_CONFIG_JQUERY_LABEL"
+            description="COM_M365CALENDAR_CONFIG_JQUERY_DESC"
+            default="template"
+            validate="options"
+        >
+            <option value="template">COM_M365CALENDAR_CONFIG_ASSET_TEMPLATE</option>
+            <option value="core">COM_M365CALENDAR_CONFIG_ASSET_CORE</option>
+        </field>
+    </fieldset>
+
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            validate="rules"
+            filter="rules"
+            component="com_m365calendar"
+            section="component"
+        />
+    </fieldset>
+</config>
