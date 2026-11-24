@@ -25,6 +25,8 @@ use Joomla\Component\M365calendar\Administrator\Feed\IcsEvent;
 /**
  * View helpers for events: URLs, date display, "Add to calendar" links and JSON-LD.
  *
+ * All URLs are returned unescaped; templates escape them once at output.
+ *
  * @since  0.1.0
  */
 final class EventHelper
@@ -42,7 +44,7 @@ final class EventHelper
      */
     public static function eventUrl(int $id, int $itemId, bool $absolute = false): string
     {
-        return Route::_('index.php?option=com_m365calendar&view=event&id=' . $id . '&Itemid=' . $itemId, !$absolute, Route::TLS_IGNORE, $absolute);
+        return Route::_('index.php?option=com_m365calendar&view=event&id=' . $id . '&Itemid=' . $itemId, false, Route::TLS_IGNORE, $absolute);
     }
 
     /**
@@ -64,7 +66,7 @@ final class EventHelper
             $url .= '&' . http_build_query($vars, '', '&', PHP_QUERY_RFC3986);
         }
 
-        return Route::_($url, !$absolute, Route::TLS_IGNORE, $absolute);
+        return Route::_($url, false, Route::TLS_IGNORE, $absolute);
     }
 
     /**
@@ -116,7 +118,7 @@ final class EventHelper
         return [
             'outlook' => AddToCalendarLinks::outlook($event),
             'google'  => AddToCalendarLinks::google($event),
-            'ics'     => Route::_('index.php?option=com_m365calendar&task=feed.event&format=ics&id=' . (int) $row->id . '&Itemid=' . $itemId),
+            'ics'     => Route::_('index.php?option=com_m365calendar&task=feed.event&format=ics&id=' . (int) $row->id . '&Itemid=' . $itemId, false),
         ];
     }
 

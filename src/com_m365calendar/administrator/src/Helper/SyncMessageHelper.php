@@ -46,7 +46,13 @@ final class SyncMessageHelper
                 return [[Text::_('COM_M365CALENDAR_SYNC_NOT_CONFIGURED') . ' ' . self::reason($result->reason), 'error']];
 
             case SyncResult::FAILED:
-                return [[Text::_('COM_M365CALENDAR_SYNC_ERROR_' . strtoupper($result->reason ?: 'http')), 'error']];
+                $message = Text::_('COM_M365CALENDAR_SYNC_ERROR_' . strtoupper($result->reason ?: 'http'));
+
+                if ($result->detail !== '') {
+                    $message .= ' ' . Text::sprintf('COM_M365CALENDAR_SYNC_ERROR_DETAIL', htmlspecialchars($result->detail, ENT_QUOTES, 'UTF-8'));
+                }
+
+                return [[$message, 'error']];
         }
 
         $messages = [];

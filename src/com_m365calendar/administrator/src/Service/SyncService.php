@@ -145,7 +145,7 @@ final class SyncService
             } catch (GraphException $e) {
                 $this->logGraphError('Authentication failed', $e);
 
-                return new SyncResult(SyncResult::FAILED, self::errorKind($e));
+                return new SyncResult(SyncResult::FAILED, self::errorKind($e), self::statusMessage($e));
             }
 
             [$start, $end] = $this->window($now);
@@ -249,7 +249,7 @@ final class SyncService
         } catch (GraphException $e) {
             $this->logGraphError('Connection test: authentication failed', $e);
 
-            return new SyncResult(SyncResult::FAILED, self::errorKind($e));
+            return new SyncResult(SyncResult::FAILED, self::errorKind($e), self::statusMessage($e));
         }
 
         $result = new SyncResult(SyncResult::DONE);
@@ -318,7 +318,7 @@ final class SyncService
      */
     private static function statusMessage(GraphException $e): string
     {
-        $message = self::errorKind($e) . ' HTTP ' . $e->getStatusCode();
+        $message = 'HTTP ' . $e->getStatusCode();
 
         if ($e->getErrorCode() !== '') {
             $message .= ' ' . preg_replace('/[^A-Za-z0-9_. -]/', '', $e->getErrorCode());

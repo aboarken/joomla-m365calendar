@@ -15,6 +15,7 @@ use Joomla\CMS\Installer\InstallerAdapter;
 use Joomla\CMS\Installer\InstallerScriptInterface;
 use Joomla\CMS\Language\Text;
 use Joomla\Database\DatabaseInterface;
+use Joomla\Database\ParameterType;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
@@ -71,6 +72,14 @@ return new class () implements ServiceProviderInterface {
                     '#__m365calendar_feed_tokens',
                     '#__m365calendar_calendars',
                 ];
+
+                /**
+                 * Package version found before an update ('' on install).
+                 *
+                 * @var    string
+                 * @since  0.1.2
+                 */
+                private string $previousVersion = '';
 
                 /**
                  * Constructor.
@@ -155,6 +164,8 @@ return new class () implements ServiceProviderInterface {
                         }
                     }
 
+                    $this->setActionLogging(false);
+
                     $this->app->enqueueMessage(Text::_('PKG_M365CALENDAR_UNINSTALLED'));
 
                     return true;
@@ -175,6 +186,8 @@ return new class () implements ServiceProviderInterface {
                     if ($type === 'uninstall') {
                         return true;
                     }
+
+                    $this->previousVersion = $type === 'update' ? $this->installedVersion() : '';
 
                     if (version_compare(JVERSION, self::MIN_JOOMLA, '<')) {
                         $this->app->enqueueMessage(Text::sprintf('PKG_M365CALENDAR_ERROR_JOOMLA', self::MIN_JOOMLA), 'error');
@@ -209,6 +222,15 @@ return new class () implements ServiceProviderInterface {
                  */
                 public function postflight(string $type, InstallerAdapter $adapter): bool
                 {
+                    if ($type === 'update') {
+                        // Versions before 0.1.2 did not switch action logging on at install.
+                        if ($this->previousVersion !== '' && version_compare($this->previousVersion, '0.1.2', '<')) {
+                            $this->setActionLogging(true);
+                        }
+
+                        return true;
+                    }
+
                     if ($type !== 'install' && $type !== 'discover_install') {
                         return true;
                     }
@@ -223,9 +245,94 @@ return new class () implements ServiceProviderInterface {
 
                     $db->setQuery($query)->execute();
 
+                    $this->setActionLogging(true);
+
                     $this->app->enqueueMessage(Text::_('PKG_M365CALENDAR_POSTINSTALL'));
 
                     return true;
+                }
+
+                /**
+                 * Version of the package that is installed right now (before an update).
+                 *
+                 * @return  string  Empty when unknown.
+                 *
+                 * @since   0.1.2
+                 */
+                private function installedVersion(): string
+                {
+                    try {
+                        $db    = $this->db;
+                        $query = $db->getQuery(true)
+                            ->select($db->quoteName('manifest_cache'))
+                            ->from($db->quoteName('#__extensions'))
+                            ->where($db->quoteName('type') . ' = ' . $db->quote('package'))
+                            ->where($db->quoteName('element') . ' = ' . $db->quote('pkg_m365calendar'));
+
+                        $cache = json_decode((string) $db->setQuery($query)->loadResult(), true);
+
+                        return \is_array($cache) && \is_string($cache['version'] ?? null) ? $cache['version'] : '';
+                    } catch (\Throwable) {
+                        return '';
+                    }
+                }
+
+                /**
+                 * Add the component to (or remove it from) the extensions whose content
+                 * changes the core "Action Log - Joomla" plugin records
+                 * (Users > User Actions Log > Options > Events To Log).
+                 *
+                 * Done once at install so calendar create/edit/delete are logged out of
+                 * the box; an administrator can untick it afterwards.
+                 *
+                 * @param   boolean  $enable  True to add, false to remove.
+                 *
+                 * @return  void
+                 *
+                 * @since   0.1.2
+                 */
+                private function setActionLogging(bool $enable): void
+                {
+                    try {
+                        $db    = $this->db;
+                        $query = $db->getQuery(true)
+                            ->select($db->quoteName(['extension_id', 'params']))
+                            ->from($db->quoteName('#__extensions'))
+                            ->where($db->quoteName('type') . ' = ' . $db->quote('component'))
+                            ->where($db->quoteName('element') . ' = ' . $db->quote('com_actionlogs'));
+
+                        $row = $db->setQuery($query)->loadObject();
+
+                        if (!$row) {
+                            return;
+                        }
+
+                        $params = json_decode((string) $row->params, true);
+                        $params = \is_array($params) ? $params : [];
+                        $list   = array_values(array_filter((array) ($params['loggable_extensions'] ?? []), '\is_string'));
+                        $has    = \in_array('com_m365calendar', $list, true);
+
+                        if ($enable === $has) {
+                            return;
+                        }
+
+                        $params['loggable_extensions'] = $enable
+                            ? array_merge($list, ['com_m365calendar'])
+                            : array_values(array_diff($list, ['com_m365calendar']));
+
+                        $json  = json_encode($params, JSON_THROW_ON_ERROR);
+                        $id    = (int) $row->extension_id;
+                        $query = $db->getQuery(true)
+                            ->update($db->quoteName('#__extensions'))
+                            ->set($db->quoteName('params') . ' = :params')
+                            ->where($db->quoteName('extension_id') . ' = :id')
+                            ->bind(':params', $json)
+                            ->bind(':id', $id, ParameterType::INTEGER);
+
+                        $db->setQuery($query)->execute();
+                    } catch (\Throwable) {
+                        // Action logging is optional; never fail the install for it.
+                    }
                 }
             }
         );

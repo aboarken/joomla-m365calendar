@@ -35,9 +35,9 @@ Events are copied **read-only** from Microsoft Graph into local tables by a sche
 
 ## Requirements
 
-- Joomla 5.0 or later, or Joomla 6 (no Backward Compatibility plugin needed)
+- Joomla 5.0 or later, or Joomla 6 (no Backward Compatibility plugin needed). CI installs and tests the package on Joomla 5.0.0, 5.4 and 6.2.
 - PHP 8.1 or later with the `openssl` extension (checked by the installer)
-- MySQL 8 / MariaDB 10.4+ (utf8mb4) or PostgreSQL 12+
+- MySQL 8 / MariaDB 10.4+ (utf8mb4) or PostgreSQL 12+ (both are tested)
 - Outgoing HTTPS from the server to `login.microsoftonline.com` and `graph.microsoft.com` (Joomla's proxy settings in Global Configuration are used)
 - A Microsoft 365 tenant where you can create an app registration and run Exchange Online PowerShell
 
@@ -155,7 +155,7 @@ Test-ServicePrincipalAuthorization -Identity <AppId> -Resource ceo@contoso.com
 | **Frontend Assets** | Bootstrap and jQuery, see [below](#bootstrap-and-jquery). |
 | **Permissions** | `core.admin`, `core.options`, `core.manage`, `core.create`, `core.edit`, `core.edit.state`, `core.delete` and **`m365calendar.sync`** (Sync now / Test connection). |
 
-**Calendars** (Components → Microsoft 365 Calendar → Calendars): title, mailbox (validated e-mail address), calendar ID (optional; empty = the mailbox's default calendar), colour, **Allow in feeds** (off by default), published state, access level. Each calendar is synced separately. Batch can change the access level. Create/edit/delete/publish actions and Options changes are recorded in **Users → User Actions Log**.
+**Calendars** (Components → Microsoft 365 Calendar → Calendars): title, mailbox (validated e-mail address), calendar ID (optional; empty = the mailbox's default calendar), colour, **Allow in feeds** (off by default), published state, access level. Each calendar is synced separately. Batch can change the access level. Create/edit/delete/publish actions and Options changes are recorded in **Users → User Actions Log**. The installer ticks *Microsoft 365 Calendar* under **User Actions Log → Options → Events To Log** so this works out of the box; untick it there to stop logging calendar changes.
 
 **Events**: read-only list of synced events (search, calendar, category, upcoming/past, all-day/timed filters) with the last sync time and status per calendar, and the **Sync now** and **Test connection** buttons (POST with CSRF token, `m365calendar.sync` permission, logged in the User Actions Log).
 
@@ -216,7 +216,9 @@ Personal links:
 
 Feeds follow RFC 5545 (escaping, control characters removed, folding at 75 octets, UTC times or `VALUE=DATE`, stable `UID` = hash of the Graph event ID + site domain, `DTSTAMP`, `LAST-MODIFIED`, `X-WR-CALNAME`, `REFRESH-INTERVAL`/`X-PUBLISHED-TTL` = `PT1H`) and contain only subject, start, end, location, categories and the event page URL.
 
-They are cached for 15 minutes with Joomla's Cache API (public feeds per menu item, personal feeds per user and menu item; the cache is cleared after each sync), send `ETag`/`Last-Modified` and answer conditional requests with 304, are rate-limited per IP address and per token, and send `X-Robots-Tag: noindex, nofollow`. Feed URLs and tokens are never logged; feed errors log only the menu item ID and user ID.
+They are cached for 15 minutes with Joomla's Cache API (public feeds per menu item, personal feeds per user, menu item and access levels). The cache is cleared after each sync and whenever a calendar is saved, published, unpublished or deleted, so switching **Allow in feeds** off or changing an access level takes effect at once. Changing a menu item's settings takes effect within 15 minutes. Feeds send `ETag`/`Last-Modified` and answer conditional requests with 304, are rate-limited per IP address (60 requests a minute) and per token (20 a minute), and send `X-Robots-Tag: noindex, nofollow`. Behind a reverse proxy or load balancer, switch on **Global Configuration → Server → Behind Load Balancer** so the rate limit sees the visitor's address instead of the proxy's.
+
+The extension never writes feed URLs or tokens to its log; feed errors log only the menu item ID and user ID. Your web server's access log does record requested URLs, including personal links, so protect those logs like other sensitive data, and serve the site over HTTPS.
 
 **How often calendar apps refresh subscriptions** (`REFRESH-INTERVAL` is only a hint):
 
@@ -274,7 +276,7 @@ Only these event fields are stored: subject, start, end, all-day flag, location 
 
 | Symptom | Cause / fix |
 |---|---|
-| "Authentication failed" | Wrong tenant/client ID, certificate not uploaded to *this* app registration, or certificate expired. Check the `AADSTS` code in the Events view message. |
+| "Authentication failed" | Wrong tenant/client ID, certificate not uploaded to *this* app registration, or certificate expired. The error message after **Test connection** or **Sync now** shows the HTTP status, Microsoft's `AADSTS` error code and the request-id (for example `AADSTS700016`: the client ID does not exist in that tenant; `AADSTS700027`: the certificate is not the one uploaded to the app registration). |
 | "Access denied" (HTTP 403) for a mailbox | Mailbox not in the management scope, role assignment missing, or changes not applied yet. Run `Test-ServicePrincipalAuthorization`. |
 | Access to mailboxes outside the scope | A tenant-wide `Calendars.*` consent still exists in Entra. Remove it. |
 | "Mailbox or calendar not found" (404) | Typo in the mailbox, or the calendar ID belongs to another mailbox. Leave the calendar ID empty for the default calendar. |
@@ -287,6 +289,8 @@ Only these event fields are stored: subject, start, end, all-day flag, location 
 | Feed returns 404 | Subscription off for the menu item, token reset or revoked, user blocked, or the menu item's access level excludes the user/guests. |
 | Feed is empty | No calendar has *Allow in feeds* on, or (public link) none of them has a guest access level. |
 | `/feed.ics` gives 404 with SEF off | Use the link shown in the Subscribe panel; it works with and without URL rewriting. |
+| Calendar changes are missing from the User Actions Log | Tick *Microsoft 365 Calendar* in Users → User Actions Log → Options → Events To Log. |
+| "Sync now" times out with many calendars | Use the scheduled task from server cron; the command line has no web request time limit. |
 | Logs | `administrator/logs/com_m365calendar.php` and System → Scheduled Tasks (task log). |
 
 ## Development
@@ -298,7 +302,8 @@ src/pkg/                      package manifest, install script, language
 src/lib_m365graph/            library
 src/com_m365calendar/         component (administrator/, site/, media/)
 src/plg_task_m365calendarsync task plugin
-tests/                        PHPUnit tests
+tests/Unit/                   PHPUnit tests (no Joomla needed)
+tests/Integration/            installs Joomla + the package and tests them on a real database
 updates/                      update server XML
 ```
 
@@ -318,7 +323,21 @@ JOOMLA_ROOT=/path/to/joomla vendor/bin/phpstan analyse
 
 When switching `JOOMLA_ROOT` between Joomla versions, run `vendor/bin/phpstan clear-result-cache` first, otherwise PHPStan reuses the previous version's results.
 
-GitHub Actions (`.github/workflows/tests.yml`) runs PHPUnit on PHP 8.1–8.5, PHPStan against Joomla 5 and Joomla 6 releases, and the coding standard check on every push to `main` and every pull request, then builds the package and uploads the zip as a workflow artifact.
+### Integration test
+
+`tests/Integration/run.sh` downloads a Joomla release, installs it into a scratch directory with an **empty** database you provide, installs the built package with Joomla's own installer (twice, to cover the update path), and then:
+
+- runs `tests/Integration/smoke.php` inside that site: tables, calendar validation, the real sync and storage code with a stand-in Graph client (upsert, delete, failure keeps data, lock), filter queries, feed tokens and cascade delete;
+- checks pages, filters, feeds, `.ics` downloads and access rules over HTTP;
+- uninstalls the package and checks that no table, record or file is left.
+
+```bash
+DB_TYPE=mysqli DB_HOST=127.0.0.1 DB_USER=joomla DB_PASS=joomla DB_NAME=joomla_it JOOMLA_VERSION=5.4.11 tests/Integration/run.sh
+```
+
+Use `DB_TYPE=pgsql` for PostgreSQL, and `UPGRADE_FROM_ZIP=/path/to/older/pkg.zip` to test upgrading from an earlier release. The unit tests replace the database with in-memory fakes, so problems that only appear on a real Joomla site and database driver are caught here.
+
+GitHub Actions (`.github/workflows/tests.yml`) runs PHPUnit on PHP 8.1–8.5, PHPStan against Joomla 5 and Joomla 6 releases, the integration test (Joomla 5.0.0, 5.4 and 6.2 on MySQL and PostgreSQL, plus an upgrade from 0.1.1), and the coding standard check on every push to `main` and every pull request, then builds the package and uploads the zip as a workflow artifact.
 
 Build the installable package:
 
@@ -326,7 +345,7 @@ Build the installable package:
 php build/build.php
 ```
 
-The build lints all PHP/XML/INI/JSON files, stamps the version into the manifests, creates the minified CSS/JS, zips the three extensions and wraps them in `dist/pkg_m365calendar-<version>.zip`, then prints its SHA-256 and SHA-384 (put the SHA-384 into `updates/pkg_m365calendar.xml`). `php build/build.php --version=0.1.1` overrides the version. To publish a release, set the version in the manifests, add its CHANGELOG section, merge to `main`, then either push a tag `v<version>` or run the **Release** workflow on `main` from the Actions tab with that version. The workflow builds the zip and creates the GitHub release (and, when run by hand, the tag).
+The build lints all PHP/XML/INI/JSON files, stamps the version into the manifests, creates the minified CSS/JS, zips the three extensions and wraps them in `dist/pkg_m365calendar-<version>.zip`, then prints its SHA-256 and SHA-384 (put the SHA-384 into `updates/pkg_m365calendar.xml`). `php build/build.php --version=0.1.3` overrides the version. To publish a release, set the version in the manifests, add its CHANGELOG section, merge to `main`, then either push a tag `v<version>` or run the **Release** workflow on `main` from the Actions tab with that version. The workflow builds the zip and creates the GitHub release (and, when run by hand, the tag).
 
 Versioning follows SemVer; every release adds an entry to `CHANGELOG.md` and, when the schema changes, `sql/updates/mysql/<version>.sql` and `sql/updates/postgresql/<version>.sql`.
 
@@ -337,6 +356,6 @@ Where the requirements and Joomla's conventions met, these choices were made:
 - **Deleted users' feed tokens**: the requirements forbid system plugins and global event listeners, so there is no `onUserAfterDelete` listener. Instead, a feed request with a deleted user's token returns 404 and deletes the token immediately, and every sync removes tokens whose user no longer exists. Uninstall drops the table.
 - **Showing the personal link**: since only the hash is stored, the link cannot be shown again later. It is shown once right after it is created or reset (kept in the session only until then).
 - **"Connection" tab restricted to `core.admin`**: Joomla's Options screen has no per-tab permission, so the fields use a custom field (shows a notice instead of the input) and a custom form filter (keeps the stored value) for users without `core.admin`.
-- **User Action Logs**: calendar create/edit/delete/publish and Options changes are logged by the core *Action Log – Joomla* plugin (the component registers itself in `#__action_logs_extensions` / `#__action_log_config`); manual sync, connection test and token revocation are logged through `ActionlogModel`.
+- **User Action Logs**: calendar create/edit/delete/publish and Options changes are logged by the core *Action Log – Joomla* plugin (the component registers itself in `#__action_logs_extensions` / `#__action_log_config`, and the package installer adds it to that plugin's "Events To Log" list, which the uninstaller undoes); manual sync, connection test and token revocation are logged through `ActionlogModel`.
 - **Feed URL**: `/{menu-alias}/feed.ics` is produced by a router rule; with "Add suffix to URLs" on, Joomla adds the `.ics` suffix itself.
 - **Microsoft Graph throttling**: 504 is treated like 429/503.

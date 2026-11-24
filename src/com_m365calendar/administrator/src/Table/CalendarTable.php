@@ -15,6 +15,7 @@ namespace Joomla\Component\M365calendar\Administrator\Table;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
+use Joomla\Component\M365calendar\Administrator\Rule\M365calendaridRule;
 use Joomla\Database\DatabaseDriver;
 use Joomla\Database\ParameterType;
 use Joomla\Event\DispatcherInterface;
@@ -90,7 +91,7 @@ class CalendarTable extends Table
         }
 
         // Graph calendar IDs are base64url-like strings.
-        if ($this->graph_calendar_id !== '' && !preg_match('/^[A-Za-z0-9=_\-+\/]{1,512}$/', $this->graph_calendar_id)) {
+        if ($this->graph_calendar_id !== '' && !preg_match(M365calendaridRule::PATTERN, $this->graph_calendar_id)) {
             $this->setError(Text::_('COM_M365CALENDAR_CALENDAR_ERROR_CALENDAR_ID'));
 
             return false;

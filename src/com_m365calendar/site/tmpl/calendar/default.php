@@ -38,12 +38,12 @@ $showToggle    = (int) $this->params->get('show_view_toggle', 1) === 1;
         <?php if ($showToggle) : ?>
             <nav class="btn-group" aria-label="<?php echo Text::_('COM_M365CALENDAR_VIEW_TOGGLE_LABEL'); ?>">
                 <a class="btn btn-sm <?php echo $this->mode === 'list' ? 'btn-primary' : 'btn-outline-primary'; ?>"
-                   href="<?php echo EventHelper::calendarUrl($this->itemId, ['mode' => 'list']); ?>"
+                   href="<?php echo $this->escape(EventHelper::calendarUrl($this->itemId, ['mode' => 'list'])); ?>"
                    <?php echo $this->mode === 'list' ? 'aria-current="page"' : ''; ?>>
                     <?php echo Text::_('COM_M365CALENDAR_MODE_LIST'); ?>
                 </a>
                 <a class="btn btn-sm <?php echo $this->mode === 'month' ? 'btn-primary' : 'btn-outline-primary'; ?>"
-                   href="<?php echo EventHelper::calendarUrl($this->itemId, ['mode' => 'month']); ?>"
+                   href="<?php echo $this->escape(EventHelper::calendarUrl($this->itemId, ['mode' => 'month'])); ?>"
                    <?php echo $this->mode === 'month' ? 'aria-current="page"' : ''; ?>>
                     <?php echo Text::_('COM_M365CALENDAR_MODE_MONTH'); ?>
                 </a>

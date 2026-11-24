@@ -15,7 +15,8 @@ parameters:
         - src/com_m365calendar/administrator/services/provider.php
         - src/plg_task_m365calendarsync/services/provider.php
         - src/pkg/script.php
-        - tests
+        - tests/Unit
+        - tests/Support
     scanDirectories:
         - %env.JOOMLA_ROOT%/libraries/src
         - %env.JOOMLA_ROOT%/libraries/vendor

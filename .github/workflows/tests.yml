@@ -76,6 +76,59 @@ jobs:
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --no-progress --memory-limit=1G --error-format=github
 
+  integration:
+    # Installs Joomla, installs the built package with Joomla's installer and
+    # exercises it on a real database (see tests/Integration/run.sh).
+    name: Integration (Joomla ${{ matrix.joomla }}, ${{ matrix.db }}${{ matrix.upgrade_from && format(', upgrade from {0}', matrix.upgrade_from) || '' }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { joomla: '5.0.0', db: mysqli }
+          - { joomla: '5.4.11', db: mysqli }
+          - { joomla: '5.4.11', db: pgsql }
+          - { joomla: '6.2.1', db: mysqli }
+          - { joomla: '6.2.1', db: pgsql }
+          # Upgrade from the first public release instead of a fresh install.
+          - { joomla: '5.4.11', db: mysqli, upgrade_from: '0.1.1' }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: openssl, mbstring, zip, mysqli, pgsql, pdo_pgsql, gd, intl, simplexml, dom
+          coverage: none
+          ini-values: memory_limit=512M
+
+      - name: Start MySQL and create the test database
+        if: matrix.db == 'mysqli'
+        run: |
+          sudo systemctl start mysql
+          mysql -uroot -proot -e "CREATE DATABASE joomla_it CHARACTER SET utf8mb4; CREATE USER 'joomla'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY 'joomla'; GRANT ALL ON joomla_it.* TO 'joomla'@'127.0.0.1'; CREATE USER 'joomla'@'localhost' IDENTIFIED WITH mysql_native_password BY 'joomla'; GRANT ALL ON joomla_it.* TO 'joomla'@'localhost';"
+
+      - name: Start PostgreSQL and create the test database
+        if: matrix.db == 'pgsql'
+        run: |
+          sudo systemctl start postgresql
+          sudo -u postgres psql -c "CREATE USER joomla WITH PASSWORD 'joomla';" -c "CREATE DATABASE joomla_it OWNER joomla;"
+
+      - name: Download the release to upgrade from
+        if: matrix.upgrade_from
+        run: curl -fsSL -o "$RUNNER_TEMP/pkg_old.zip" "https://github.com/${{ github.repository }}/releases/download/v${{ matrix.upgrade_from }}/pkg_m365calendar-${{ matrix.upgrade_from }}.zip"
+
+      - name: Run the integration test
+        env:
+          UPGRADE_FROM_ZIP: ${{ matrix.upgrade_from && format('{0}/pkg_old.zip', runner.temp) || '' }}
+          JOOMLA_VERSION: ${{ matrix.joomla }}
+          DB_TYPE: ${{ matrix.db }}
+          DB_HOST: 127.0.0.1
+          DB_USER: joomla
+          DB_PASS: joomla
+          DB_NAME: joomla_it
+        run: tests/Integration/run.sh
+
   lint-and-build:
     name: Coding standard and package build
     runs-on: ubuntu-latest

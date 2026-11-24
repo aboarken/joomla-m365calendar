@@ -168,12 +168,13 @@ final class SyncServiceTest extends TestCase
 
     public function testLockReleasedWhenAuthenticationFails(): void
     {
-        $this->graph->authFailure = new AuthenticationException('denied', 401, 'rid');
+        $this->graph->authFailure = new AuthenticationException('denied', 400, 'rid-9', 'unauthorized_client AADSTS700016');
 
         $result = $this->service()->syncAll();
 
         $this->assertSame(SyncResult::FAILED, $result->state);
         $this->assertSame('auth', $result->reason);
+        $this->assertSame('HTTP 400 unauthorized_client AADSTS700016 request-id rid-9', $result->detail, 'Admins get the status, AADSTS code and request-id.');
         $this->assertNull($this->store->lockOwner);
         $this->assertSame([], $this->store->status, 'Nothing is overwritten when no calendar was processed.');
     }

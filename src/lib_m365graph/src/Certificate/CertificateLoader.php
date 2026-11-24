@@ -58,7 +58,7 @@ final class CertificateLoader
         $contents = (string) file_get_contents($path);
 
         if (str_contains($contents, '-----BEGIN CERTIFICATE-----')) {
-            $cert = openssl_x509_read($contents);
+            $cert = self::quietly(static fn () => openssl_x509_read($contents));
 
             if ($cert === false || !openssl_x509_export($cert, $pem)) {
                 throw new ConfigurationException('Certificate cannot be parsed.', 'cert_invalid');
@@ -80,7 +80,7 @@ final class CertificateLoader
         // Binary DER: verify it parses.
         $pem = "-----BEGIN CERTIFICATE-----\n" . chunk_split(base64_encode($contents), 64, "\n") . "-----END CERTIFICATE-----\n";
 
-        if (openssl_x509_read($pem) === false) {
+        if (self::quietly(static fn () => openssl_x509_read($pem)) === false) {
             throw new ConfigurationException('Certificate cannot be parsed.', 'cert_invalid');
         }
 
@@ -116,7 +116,8 @@ final class CertificateLoader
     {
         ConnectionSettings::assertSafeFile($path, $this->webRoot);
 
-        $key = openssl_pkey_get_private((string) file_get_contents($path));
+        $pemKey = (string) file_get_contents($path);
+        $key    = self::quietly(static fn () => openssl_pkey_get_private($pemKey));
 
         if ($key === false) {
             throw new ConfigurationException('Private key cannot be parsed (it must be an unencrypted PEM key).', 'key_invalid');
@@ -147,5 +148,31 @@ final class CertificateLoader
         $pem = "-----BEGIN CERTIFICATE-----\n" . chunk_split(base64_encode($der), 64, "\n") . "-----END CERTIFICATE-----\n";
 
         return openssl_x509_check_private_key($pem, $this->loadPrivateKey($privateKeyPath));
+    }
+
+    /**
+     * Run an OpenSSL call without emitting PHP warnings for unparsable input
+     * (the caller turns a false result into a ConfigurationException), and
+     * drain OpenSSL's error queue so stale errors do not leak into later calls.
+     *
+     * @param   \Closure  $call  The OpenSSL call.
+     *
+     * @return  mixed
+     *
+     * @since   0.1.2
+     */
+    private static function quietly(\Closure $call): mixed
+    {
+        set_error_handler(static fn (): bool => true, E_WARNING);
+
+        try {
+            return $call();
+        } finally {
+            restore_error_handler();
+
+            while (openssl_error_string() !== false) {
+                // Discard.
+            }
+        }
     }
 }

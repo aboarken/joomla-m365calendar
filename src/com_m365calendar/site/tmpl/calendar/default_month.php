@@ -33,12 +33,12 @@ $timeFmt   = Text::_('COM_M365CALENDAR_TIME_FORMAT');
 ?>
 <div class="m365calendar-month">
     <div class="d-flex align-items-center justify-content-between mb-2">
-        <a class="btn btn-outline-secondary btn-sm" href="<?php echo EventHelper::calendarUrl($this->itemId, ['mode' => 'month', 'month' => $grid['prev']]); ?>">
+        <a class="btn btn-outline-secondary btn-sm" href="<?php echo $this->escape(EventHelper::calendarUrl($this->itemId, ['mode' => 'month', 'month' => $grid['prev']])); ?>">
             <span aria-hidden="true">&lsaquo;</span>
             <span><?php echo Text::_('COM_M365CALENDAR_MONTH_PREVIOUS'); ?></span>
         </a>
         <h2 class="h4 mb-0" id="m365calendar-month-title-<?php echo $this->itemId; ?>"><?php echo $this->escape($monthName); ?></h2>
-        <a class="btn btn-outline-secondary btn-sm" href="<?php echo EventHelper::calendarUrl($this->itemId, ['mode' => 'month', 'month' => $grid['next']]); ?>">
+        <a class="btn btn-outline-secondary btn-sm" href="<?php echo $this->escape(EventHelper::calendarUrl($this->itemId, ['mode' => 'month', 'month' => $grid['next']])); ?>">
             <span><?php echo Text::_('COM_M365CALENDAR_MONTH_NEXT'); ?></span>
             <span aria-hidden="true">&rsaquo;</span>
         </a>
@@ -76,7 +76,7 @@ $timeFmt   = Text::_('COM_M365CALENDAR_TIME_FORMAT');
                                             ?>
                                             <li class="m365calendar-month-event m365calendar-cal-<?php echo (int) $event->calendar_id; ?>">
                                                 <?php if ($detail) : ?>
-                                                    <a href="<?php echo EventHelper::eventUrl((int) $event->id, $this->itemId); ?>">
+                                                    <a href="<?php echo $this->escape(EventHelper::eventUrl((int) $event->id, $this->itemId)); ?>">
                                                         <?php if ($time !== '') :
                                                             ?><span class="m365calendar-time"><?php echo $this->escape($time); ?></span><?php
                                                         endif; ?>
