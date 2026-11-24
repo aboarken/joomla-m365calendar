@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The project uses
 [Semantic Versioning](https://semver.org/). Every version that changes the
 database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
+## [Unreleased]
+
+### Added
+- GitHub Actions workflow: PHPUnit on PHP 8.1–8.5, PHP_CodeSniffer, package build artifact.
+
 ## [1.0.0] - 2026-11-24
 
 ### Added
