@@ -1,4 +1,4 @@
-# Microsoft 365 Calendar for Joomla (`pkg_m365calendar`)
+# Joomla Microsoft 365 Calendar (`pkg_m365calendar`)
 
 Shows Microsoft 365 (Exchange Online) calendar events on a Joomla 5 or 6 site through **one menu item type, "Calendar"**, with list and month views, fixed filters per menu item, visitor filters, event pages, calendar subscription feeds and "Add to my calendar" links.
 
