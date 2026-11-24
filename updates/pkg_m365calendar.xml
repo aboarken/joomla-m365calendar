@@ -5,14 +5,14 @@
         <description>Microsoft 365 Calendar package (library, component, task plugin)</description>
         <element>pkg_m365calendar</element>
         <type>package</type>
-        <version>0.1.1</version>
+        <version>0.1.2</version>
         <client>site</client>
-        <infourl title="Microsoft 365 Calendar">https://github.com/aboarken/joomla-m365calendar/releases/tag/v0.1.1</infourl>
+        <infourl title="Microsoft 365 Calendar">https://github.com/aboarken/joomla-m365calendar/releases/tag/v0.1.2</infourl>
         <downloads>
-            <downloadurl type="full" format="zip">https://github.com/aboarken/joomla-m365calendar/releases/download/v0.1.1/pkg_m365calendar-0.1.1.zip</downloadurl>
+            <downloadurl type="full" format="zip">https://github.com/aboarken/joomla-m365calendar/releases/download/v0.1.2/pkg_m365calendar-0.1.2.zip</downloadurl>
         </downloads>
         <!-- SHA-384 of the released zip (also in the release's SHA384SUMS file). -->
-        <sha384>5588c7460941dfd5ecc121996717679910965766761121a9c6de075e2cb29ab75cdf8d87a965cfdeb9e809fd9a3ca5c4</sha384>
+        <sha384>b72aee7566ef9bdaadddece7dec85ba64c98d96ed1514c26aa3da0f87dfbfe123b251f16a4239ce88a29cbb8b0462f18</sha384>
         <maintainer>M365 Calendar contributors</maintainer>
         <maintainerurl>https://github.com/aboarken/joomla-m365calendar</maintainerurl>
         <targetplatform name="joomla" version="(5|6)\..*"/>
