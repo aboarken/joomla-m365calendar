@@ -1,0 +1,26 @@
+{
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "com_m365calendar",
+  "version": "1.0.0",
+  "description": "Assets of the Microsoft 365 Calendar component. Bootstrap and jQuery are not bundled.",
+  "license": "GPL-2.0-or-later",
+  "assets": [
+    {
+      "name": "m365calendar.site",
+      "type": "style",
+      "uri": "com_m365calendar/site.min.css"
+    },
+    {
+      "name": "m365calendar.subscribe",
+      "type": "script",
+      "uri": "com_m365calendar/subscribe.min.js",
+      "dependencies": [
+        "core"
+      ],
+      "attributes": {
+        "type": "module",
+        "defer": true
+      }
+    }
+  ]
+}

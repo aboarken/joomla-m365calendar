@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+  Joomla CMS coding standard (PSR-12 based, as used by joomla/joomla-cms).
+  https://manual.joomla.org/docs/get-started/codestyle/
+-->
+<ruleset name="pkg_m365calendar">
+    <description>Joomla CMS coding standard for pkg_m365calendar</description>
+
+    <file>src</file>
+    <file>tests</file>
+    <file>build</file>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <rule ref="PSR12">
+        <exclude name="Generic.Files.LineEndings"/>
+    </rule>
+
+    <!-- Joomla allows long lines; warn above 180. -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="180"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- Templates, layouts, service providers and install scripts are not classes. -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>*/tmpl/*</exclude-pattern>
+        <exclude-pattern>*/layouts/*</exclude-pattern>
+        <exclude-pattern>*/services/provider.php</exclude-pattern>
+        <exclude-pattern>src/pkg/script.php</exclude-pattern>
+        <exclude-pattern>build/*</exclude-pattern>
+        <exclude-pattern>tests/bootstrap.php</exclude-pattern>
+    </rule>
+    <rule ref="PSR12.Files.FileHeader">
+        <exclude-pattern>*/tmpl/*</exclude-pattern>
+        <exclude-pattern>*/layouts/*</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+        <exclude-pattern>build/*</exclude-pattern>
+    </rule>
+
+    <!-- Joomla's own property names ($_supportNullValue, $_context ...). -->
+    <rule ref="PSR2.Classes.PropertyDeclaration.Underscore">
+        <exclude-pattern>*/Table/*</exclude-pattern>
+        <exclude-pattern>*/Model/*</exclude-pattern>
+        <exclude-pattern>*/View/*</exclude-pattern>
+    </rule>
+</ruleset>

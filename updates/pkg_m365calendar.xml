@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+    <update>
+        <name>Microsoft 365 Calendar</name>
+        <description>Microsoft 365 Calendar package (library, component, task plugin)</description>
+        <element>pkg_m365calendar</element>
+        <type>package</type>
+        <version>1.0.0</version>
+        <client>site</client>
+        <infourl title="Microsoft 365 Calendar">https://github.com/aboarken/joomla-m365calendar/releases/tag/v1.0.0</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/aboarken/joomla-m365calendar/releases/download/v1.0.0/pkg_m365calendar-1.0.0.zip</downloadurl>
+        </downloads>
+        <!-- Replace with the value printed by build/build.php for the released zip. -->
+        <sha384>REPLACE_WITH_SHA384_OF_RELEASE_ZIP</sha384>
+        <maintainer>M365 Calendar contributors</maintainer>
+        <maintainerurl>https://github.com/aboarken/joomla-m365calendar</maintainerurl>
+        <targetplatform name="joomla" version="(5|6)\..*"/>
+        <php_minimum>8.1</php_minimum>
+    </update>
+</updates>

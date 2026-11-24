@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @package     M365Graph
+ * @subpackage  lib_m365graph
+ *
+ * @copyright   (C) 2026 M365 Calendar contributors
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+declare(strict_types=1);
+
+namespace M365Graph\Exception;
+
+// phpcs:disable PSR1.Files.SideEffects
+\defined('_JEXEC') or die;
+// phpcs:enable PSR1.Files.SideEffects
+
+/**
+ * Graph kept returning 429/503/504 after the allowed number of retries.
+ *
+ * @since  1.0.0
+ */
+class ThrottledException extends GraphException
+{
+}

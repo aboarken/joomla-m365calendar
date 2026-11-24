@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="package" method="upgrade">
+    <name>PKG_M365CALENDAR</name>
+    <packagename>m365calendar</packagename>
+    <version>1.0.0</version>
+    <creationDate>2026-11</creationDate>
+    <author>M365 Calendar contributors</author>
+    <copyright>(C) 2026 M365 Calendar contributors</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <packager>M365 Calendar contributors</packager>
+    <packagerurl>https://github.com/aboarken/joomla-m365calendar</packagerurl>
+    <description>PKG_M365CALENDAR_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
+    <blockChildUninstall>true</blockChildUninstall>
+    <files folder="packages">
+        <!-- Installed in this order: library, component, task plugin. -->
+        <file type="library" id="m365graph">lib_m365graph.zip</file>
+        <file type="component" id="com_m365calendar">com_m365calendar.zip</file>
+        <file type="plugin" id="m365calendarsync" group="task">plg_task_m365calendarsync.zip</file>
+    </files>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/pkg_m365calendar.sys.ini</language>
+    </languages>
+    <updateservers>
+        <server type="extension" priority="1" name="Microsoft 365 Calendar">https://raw.githubusercontent.com/aboarken/joomla-m365calendar/main/updates/pkg_m365calendar.xml</server>
+    </updateservers>
+</extension>

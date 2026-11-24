@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" method="upgrade">
+    <name>com_m365calendar</name>
+    <version>1.0.0</version>
+    <creationDate>2026-11</creationDate>
+    <author>M365 Calendar contributors</author>
+    <copyright>(C) 2026 M365 Calendar contributors</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <description>COM_M365CALENDAR_XML_DESCRIPTION</description>
+    <namespace path="src">Joomla\Component\M365calendar</namespace>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+            <file driver="postgresql" charset="utf8">sql/install.postgresql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+            <file driver="postgresql" charset="utf8">sql/uninstall.postgresql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+            <schemapath type="postgresql">sql/updates/postgresql</schemapath>
+        </schemas>
+    </update>
+
+    <files folder="site">
+        <folder>layouts</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+    <languages folder="site/language">
+        <language tag="en-GB">en-GB/com_m365calendar.ini</language>
+    </languages>
+
+    <media destination="com_m365calendar" folder="media">
+        <filename>joomla.asset.json</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
+    <administration>
+        <menu img="class:calendar">COM_M365CALENDAR</menu>
+        <submenu>
+            <menu link="option=com_m365calendar&amp;view=events" view="events">COM_M365CALENDAR_SUBMENU_EVENTS</menu>
+            <menu link="option=com_m365calendar&amp;view=calendars" view="calendars">COM_M365CALENDAR_SUBMENU_CALENDARS</menu>
+            <menu link="option=com_m365calendar&amp;view=feedtokens" view="feedtokens">COM_M365CALENDAR_SUBMENU_FEEDTOKENS</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <folder>forms</folder>
+            <folder>layouts</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+        </files>
+        <languages folder="administrator/language">
+            <language tag="en-GB">en-GB/com_m365calendar.ini</language>
+            <language tag="en-GB">en-GB/com_m365calendar.sys.ini</language>
+        </languages>
+    </administration>
+</extension>
