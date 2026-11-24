@@ -224,7 +224,7 @@ class EventRepository
      * @param   string    $key     Cache key.
      * @param   callable  $loader  Loader.
      *
-     * @return  array
+     * @return  array<int, mixed>
      *
      * @since   1.0.0
      */

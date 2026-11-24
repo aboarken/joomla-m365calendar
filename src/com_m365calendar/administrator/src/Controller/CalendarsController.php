@@ -40,7 +40,7 @@ class CalendarsController extends AdminController
      *
      * @param   string  $name    The model name. Optional.
      * @param   string  $prefix  The class prefix. Optional.
-     * @param   array   $config  The array of possible config values. Optional.
+     * @param   array<string, mixed>  $config  The array of possible config values. Optional.
      *
      * @return  BaseDatabaseModel
      *

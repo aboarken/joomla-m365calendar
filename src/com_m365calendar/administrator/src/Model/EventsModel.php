@@ -33,7 +33,7 @@ class EventsModel extends ListModel
     /**
      * Constructor.
      *
-     * @param   array                     $config   An optional associative array of configuration settings.
+     * @param   array<string, mixed>      $config   An optional associative array of configuration settings.
      * @param   MVCFactoryInterface|null  $factory  The factory.
      *
      * @since   1.0.0

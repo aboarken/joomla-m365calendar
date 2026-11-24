@@ -51,7 +51,7 @@ final class AddToCalendarLinks
             $params['enddt']   = $event->endUtc->setTimezone(new \DateTimeZone('UTC'))->format('Y-m-d\TH:i:s\Z');
         }
 
-        return 'https://outlook.office.com/calendar/0/deeplink/compose?' . http_build_query(array_filter($params, 'strlen'), '', '&', PHP_QUERY_RFC3986);
+        return 'https://outlook.office.com/calendar/0/deeplink/compose?' . http_build_query(array_filter($params, static fn (string $v): bool => $v !== ''), '', '&', PHP_QUERY_RFC3986);
     }
 
     /**
@@ -77,7 +77,7 @@ final class AddToCalendarLinks
             'details'  => $event->url,
         ];
 
-        return 'https://calendar.google.com/calendar/render?' . http_build_query(array_filter($params, 'strlen'), '', '&', PHP_QUERY_RFC3986);
+        return 'https://calendar.google.com/calendar/render?' . http_build_query(array_filter($params, static fn (string $v): bool => $v !== ''), '', '&', PHP_QUERY_RFC3986);
     }
 
     /**

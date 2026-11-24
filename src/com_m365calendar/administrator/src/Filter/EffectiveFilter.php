@@ -111,7 +111,7 @@ final class EffectiveFilter
     /**
      * Copy with changes.
      *
-     * @param   array<string, mixed>  ...$changes  Named changes.
+     * @param   mixed  ...$changes  Named changes (property name => new value).
      *
      * @return  self
      *

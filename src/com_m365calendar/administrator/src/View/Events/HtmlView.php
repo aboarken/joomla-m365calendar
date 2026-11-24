@@ -31,7 +31,7 @@ class HtmlView extends BaseHtmlView
     /**
      * Items.
      *
-     * @var    array
+     * @var    object[]
      * @since  1.0.0
      */
     protected $items = [];
@@ -63,7 +63,7 @@ class HtmlView extends BaseHtmlView
     /**
      * Active filters.
      *
-     * @var    array
+     * @var    array<string, mixed>
      * @since  1.0.0
      */
     public $activeFilters = [];

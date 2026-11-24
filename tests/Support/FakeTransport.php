@@ -30,6 +30,10 @@ final class FakeTransport implements HttpTransportInterface
         return $this;
     }
 
+    /**
+     * @param  array<string, mixed>  $data
+     * @param  array<string, string> $headers
+     */
     public static function json(int $status, array $data, array $headers = []): HttpResponse
     {
         return new HttpResponse($status, $headers, (string) json_encode($data));

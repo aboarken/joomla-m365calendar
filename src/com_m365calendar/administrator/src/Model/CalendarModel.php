@@ -51,7 +51,7 @@ class CalendarModel extends AdminModel
     /**
      * Batch commands: only the access level applies to calendars.
      *
-     * @var    array
+     * @var    array<string, string>
      * @since  1.0.0
      */
     protected $batch_commands = ['assetgroup_id' => 'batchAccess'];
@@ -59,7 +59,7 @@ class CalendarModel extends AdminModel
     /**
      * Method to get the record form.
      *
-     * @param   array    $data      Data for the form.
+     * @param   array<string, mixed>  $data  Data for the form.
      * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
      *
      * @return  Form|boolean  A Form object on success, false on failure
@@ -68,11 +68,8 @@ class CalendarModel extends AdminModel
      */
     public function getForm($data = [], $loadData = true)
     {
+        // loadForm() returns a Form or throws.
         $form = $this->loadForm('com_m365calendar.calendar', 'calendar', ['control' => 'jform', 'load_data' => $loadData]);
-
-        if (empty($form)) {
-            return false;
-        }
 
         $user = $this->getCurrentUser();
 

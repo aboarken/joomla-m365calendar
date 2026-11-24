@@ -36,7 +36,7 @@ class FeedtokenModel extends AdminModel
     /**
      * Tokens are never edited, so there is no form.
      *
-     * @param   array    $data      Data for the form.
+     * @param   array<string, mixed>  $data  Data for the form.
      * @param   boolean  $loadData  True if the form is to load its own data (default case), false if not.
      *
      * @return  boolean

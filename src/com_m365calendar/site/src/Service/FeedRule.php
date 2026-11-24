@@ -42,7 +42,7 @@ class FeedRule implements RulesInterface
     /**
      * Prepare the query (nothing to do).
      *
-     * @param   array  &$query  The query array to process.
+     * @param   array<string, mixed>  &$query  The query array to process.
      *
      * @return  void
      *
@@ -55,8 +55,8 @@ class FeedRule implements RulesInterface
     /**
      * Build the feed segment.
      *
-     * @param   array  &$query     The vars that should be converted.
-     * @param   array  &$segments  The URL segments to create.
+     * @param   array<string, mixed>  &$query     The vars that should be converted.
+     * @param   string[]              &$segments  The URL segments to create.
      *
      * @return  void
      *
@@ -82,8 +82,8 @@ class FeedRule implements RulesInterface
     /**
      * Parse the feed segment.
      *
-     * @param   array  &$segments  The URL segments to parse.
-     * @param   array  &$vars      The vars that result from the segments.
+     * @param   string[]              &$segments  The URL segments to parse.
+     * @param   array<string, mixed>  &$vars      The vars that result from the segments.
      *
      * @return  void
      *

@@ -70,7 +70,7 @@ final class FilterResolver
         }
 
         $subjectTerms  = $preset->keyword !== '' ? [$preset->keyword] : [];
-        $locationTerms = array_values(array_filter([$preset->location, $visitor->location], 'strlen'));
+        $locationTerms = array_values(array_filter([$preset->location, $visitor->location], static fn (string $v): bool => $v !== ''));
 
         // Time bounds.
         $endAfter    = null;

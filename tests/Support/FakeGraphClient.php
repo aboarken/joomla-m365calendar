@@ -23,7 +23,7 @@ final class FakeGraphClient implements GraphClientInterface
     /** @var array<string, GraphException> */
     public array $failures = [];
 
-    /** @var array<int, array{path: string, query: array, headers: array}> */
+    /** @var array<int, array{path: string, query: array<string, scalar>, headers: array<string, string>}> */
     public array $calls = [];
 
     public ?GraphException $authFailure = null;
