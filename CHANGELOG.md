@@ -7,7 +7,7 @@ database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 ## [Unreleased]
 
 ### Added
-- GitHub Actions workflow: PHPUnit on PHP 8.1–8.4, PHP_CodeSniffer, package build artifact.
+- GitHub Actions workflow: PHPUnit on PHP 8.1–8.5, PHP_CodeSniffer, package build artifact.
 
 ## [1.0.0] - 2026-11-24
 
