@@ -86,7 +86,7 @@ $subject    = (string) $item->subject !== '' ? (string) $item->subject : Text::_
                     </a>
                 <?php endif; ?>
 
-                <a class="btn btn-link" href="<?php echo EventHelper::calendarUrl($this->itemId); ?>">
+                <a class="btn btn-link" href="<?php echo $this->escape(EventHelper::calendarUrl($this->itemId)); ?>">
                     <?php echo Text::_('COM_M365CALENDAR_EVENT_BACK'); ?>
                 </a>
             </div>

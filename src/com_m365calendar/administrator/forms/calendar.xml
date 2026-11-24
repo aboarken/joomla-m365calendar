@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form>
+<form addruleprefix="Joomla\Component\M365calendar\Administrator\Rule">
     <fieldset name="details" label="COM_M365CALENDAR_CALENDAR_FIELDSET_DETAILS">
         <field name="id" type="hidden" default="0" filter="integer" readonly="true" />
         <field
@@ -28,8 +28,7 @@
             description="COM_M365CALENDAR_CALENDAR_CALENDAR_ID_DESC"
             maxlength="512"
             filter="string"
-            validate="regex"
-            pattern="^[A-Za-z0-9=_\-+/]*$"
+            validate="M365calendarid"
             message="COM_M365CALENDAR_CALENDAR_ERROR_CALENDAR_ID"
             autocomplete="off"
         />

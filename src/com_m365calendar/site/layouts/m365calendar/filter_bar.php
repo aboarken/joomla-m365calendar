@@ -34,7 +34,7 @@ $itemId     = (int) $displayData['itemId'];
 $prefix     = 'm365calendar-filter-' . $itemId . '-';
 $show       = static fn (string $key): bool => (int) $params->get($key, 1) === 1;
 ?>
-<form class="m365calendar-filters card card-body mb-3" method="get" action="<?php echo EventHelper::calendarUrl($itemId); ?>" role="search" aria-label="<?php echo Text::_('COM_M365CALENDAR_FILTER_FORM_LABEL'); ?>">
+<form class="m365calendar-filters card card-body mb-3" method="get" action="<?php echo $this->escape(EventHelper::calendarUrl($itemId)); ?>" role="search" aria-label="<?php echo Text::_('COM_M365CALENDAR_FILTER_FORM_LABEL'); ?>">
     <div class="row g-2 align-items-end">
         <?php if ($show('filter_show_search')) : ?>
             <div class="col-12 col-md-4">
@@ -112,7 +112,7 @@ $show       = static fn (string $key): bool => (int) $params->get($key, 1) === 1
         <?php endif; ?>
 
         <?php if ($show('filter_show_sort') && $displayData['mode'] === 'list') : ?>
-            <div class="col-6 col-md-2">
+            <div class="col-12 col-md-3">
                 <label class="form-label" for="<?php echo $prefix; ?>sort"><?php echo Text::_('COM_M365CALENDAR_FILTER_SORT'); ?></label>
                 <select class="form-select" name="list_sort" id="<?php echo $prefix; ?>sort">
                     <?php foreach (['start_asc' => 'COM_M365CALENDAR_SORT_DATE_ASC', 'start_desc' => 'COM_M365CALENDAR_SORT_DATE_DESC', 'title_asc' => 'COM_M365CALENDAR_SORT_TITLE'] as $value => $label) : ?>
@@ -133,7 +133,7 @@ $show       = static fn (string $key): bool => (int) $params->get($key, 1) === 1
                 <input type="hidden" name="month" value="<?php echo $this->escape($displayData['month']); ?>">
             <?php endif; ?>
             <button type="submit" class="btn btn-primary"><?php echo Text::_('COM_M365CALENDAR_FILTER_APPLY'); ?></button>
-            <a class="btn btn-outline-secondary" href="<?php echo EventHelper::calendarUrl($itemId, ['filter_reset' => 1]); ?>">
+            <a class="btn btn-outline-secondary" href="<?php echo $this->escape(EventHelper::calendarUrl($itemId, ['filter_reset' => 1])); ?>">
                 <?php echo Text::_('COM_M365CALENDAR_FILTER_RESET'); ?>
             </a>
         </div>

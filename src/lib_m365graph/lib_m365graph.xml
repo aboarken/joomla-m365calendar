@@ -2,7 +2,7 @@
 <extension type="library" method="upgrade">
     <name>LIB_M365GRAPH</name>
     <libraryname>m365graph</libraryname>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <creationDate>2026-11</creationDate>
     <author>M365 Calendar contributors</author>
     <copyright>(C) 2026 M365 Calendar contributors</copyright>

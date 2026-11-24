@@ -68,11 +68,16 @@ final class SyncResult
      *
      * @param   string  $state   One of the class constants.
      * @param   string  $reason  Machine-readable reason (e.g. ConfigurationException reason or error kind).
+     * @param   string  $detail  Technical detail for administrators: HTTP status, service error
+     *                           code (e.g. AADSTS number) and request-id. Never contains secrets.
      *
      * @since   0.1.0
      */
-    public function __construct(public readonly string $state = self::DONE, public readonly string $reason = '')
-    {
+    public function __construct(
+        public readonly string $state = self::DONE,
+        public readonly string $reason = '',
+        public readonly string $detail = ''
+    ) {
     }
 
     /**

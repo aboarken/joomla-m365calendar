@@ -44,7 +44,7 @@ final class CacheHelper
     public const GROUP_DATA = 'com_m365calendar';
 
     /**
-     * Clean both groups in the site's cache folder.
+     * Clean both groups in Joomla's cache folder.
      *
      * @return  void
      *
@@ -52,8 +52,9 @@ final class CacheHelper
      */
     public static function cleanSiteCaches(): void
     {
-        $app       = Factory::getApplication();
-        $cachebase = (string) $app->get('cache_path', '') ?: JPATH_SITE . '/cache';
+        // Site, administrator and CLI share one cache folder (JPATH_CACHE) unless
+        // Global Configuration sets a custom path.
+        $cachebase = (string) Factory::getApplication()->get('cache_path', '') ?: JPATH_CACHE;
 
         foreach ([self::GROUP_FEED, self::GROUP_DATA] as $group) {
             try {

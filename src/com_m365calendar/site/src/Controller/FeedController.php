@@ -33,6 +33,7 @@ use Joomla\Component\M365calendar\Administrator\Helper\LogHelper;
 use Joomla\Component\M365calendar\Site\Helper\EventHelper;
 use Joomla\Component\M365calendar\Site\Service\EventRepository;
 use Joomla\Database\DatabaseInterface;
+use Joomla\Utilities\IpHelper;
 
 // phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
@@ -57,7 +58,8 @@ class FeedController extends BaseController
     public const CACHE_MINUTES = 15;
 
     /**
-     * Requests per minute and IP address.
+     * Requests per minute and IP address (Joomla's IpHelper, which honours the
+     * "Behind Load Balancer" setting, so proxied visitors are not counted as one).
      *
      * @var    integer
      * @since  0.1.0
@@ -118,7 +120,7 @@ class FeedController extends BaseController
 
         $limiter = $this->rateLimiter();
 
-        if (!$limiter->hit('ip|' . $this->input->server->getString('REMOTE_ADDR', ''), self::LIMIT_PER_IP)) {
+        if (!$limiter->hit('ip|' . IpHelper::getIp(), self::LIMIT_PER_IP)) {
             $this->respond(429, '', ['Retry-After' => (string) $limiter->retryAfter()]);
 
             return;
@@ -147,6 +149,7 @@ class FeedController extends BaseController
 
             $userId = $principal->userId;
             $levels = $principal->viewLevels;
+            sort($levels);
         }
 
         // The menu item itself must be visible to whoever the feed is for.
@@ -158,7 +161,8 @@ class FeedController extends BaseController
 
         $cacheKey = $mode === FeedCalendarResolver::MODE_PUBLIC
             ? 'public.' . (int) $menu->id
-            : 'personal.' . $userId . '.' . (int) $menu->id;
+            // The view levels are part of the key, so a change of the user's groups applies at once.
+            : 'personal.' . $userId . '.' . (int) $menu->id . '.' . md5(implode(',', $levels));
 
         try {
             $cache = Factory::getContainer()->get(CacheControllerFactoryInterface::class)->createCacheController(
@@ -169,7 +173,9 @@ class FeedController extends BaseController
             $payload = $cache->get(
                 fn (): array => $this->buildFeed($menu, $mode, $guestLevels, $levels),
                 [],
-                md5('m365calendar.feed.' . $cacheKey)
+                // The feed contains absolute URLs, so the host is part of the key: a request
+                // with a forged Host header cannot poison the copy served to everyone else.
+                md5('m365calendar.feed.' . $cacheKey . '.' . Uri::root())
             );
         } catch (\Throwable) {
             LogHelper::logger()->error(
@@ -205,7 +211,7 @@ class FeedController extends BaseController
 
         $limiter = $this->rateLimiter();
 
-        if (!$limiter->hit('ip|' . $this->input->server->getString('REMOTE_ADDR', ''), self::LIMIT_PER_IP)) {
+        if (!$limiter->hit('ip|' . IpHelper::getIp(), self::LIMIT_PER_IP)) {
             $this->respond(429, '', ['Retry-After' => (string) $limiter->retryAfter()]);
 
             return;

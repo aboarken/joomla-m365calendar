@@ -137,11 +137,16 @@ final class DatabaseEventStore implements EventStoreInterface
         $db     = $this->db;
         $synced = self::sql($now);
 
+        // bind() takes a reference and database drivers may change the bound
+        // variable's type (PDO turns it into a string), so never bind a
+        // variable that is used again afterwards.
+        $boundCalendarId = $calendarId;
+
         $query = $db->getQuery(true)
             ->select($db->quoteName(['id', 'uid_hash']))
             ->from($db->quoteName('#__m365calendar_events'))
             ->where($db->quoteName('calendar_id') . ' = :cid')
-            ->bind(':cid', $calendarId, ParameterType::INTEGER);
+            ->bind(':cid', $boundCalendarId, ParameterType::INTEGER);
 
         /** @var array<string, string> $existing uid_hash => id */
         $existing = $db->setQuery($query)->loadAssocList('uid_hash', 'id');
@@ -291,11 +296,12 @@ final class DatabaseEventStore implements EventStoreInterface
      */
     private function updateEvent(int $id, NormalizedEvent $event, string $synced): int
     {
-        $db    = $this->db;
-        $query = $db->getQuery(true)
+        $db      = $this->db;
+        $boundId = $id;
+        $query   = $db->getQuery(true)
             ->update($db->quoteName('#__m365calendar_events'))
             ->where($db->quoteName('id') . ' = :id')
-            ->bind(':id', $id, ParameterType::INTEGER);
+            ->bind(':id', $boundId, ParameterType::INTEGER);
 
         $i = 0;
 

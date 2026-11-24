@@ -38,7 +38,7 @@ $headingId  = 'm365calendar-event-' . $itemId . '-' . (int) $item->id;
     <div class="card-body">
         <h2 class="card-title h5" id="<?php echo $headingId; ?>">
             <?php if ($detail) : ?>
-                <a href="<?php echo EventHelper::eventUrl((int) $item->id, $itemId); ?>"><?php echo $this->escape($subject); ?></a>
+                <a href="<?php echo $this->escape(EventHelper::eventUrl((int) $item->id, $itemId)); ?>"><?php echo $this->escape($subject); ?></a>
             <?php else : ?>
                 <?php echo $this->escape($subject); ?>
             <?php endif; ?>

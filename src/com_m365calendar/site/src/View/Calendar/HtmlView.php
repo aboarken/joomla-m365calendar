@@ -225,7 +225,7 @@ class HtmlView extends BaseHtmlView
             'url'      => $url,
             'webcal'   => $url !== '' ? self::webcal($url) : '',
             'hasToken' => $component->getFeedTokenService()->hasToken((int) $user->id),
-            'action'   => Route::_('index.php?option=com_m365calendar&task=feed.token&Itemid=' . $this->itemId),
+            'action'   => Route::_('index.php?option=com_m365calendar&task=feed.token&Itemid=' . $this->itemId, false),
         ];
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="plugin" group="task" method="upgrade">
     <name>plg_task_m365calendarsync</name>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <creationDate>2026-11</creationDate>
     <author>M365 Calendar contributors</author>
     <copyright>(C) 2026 M365 Calendar contributors</copyright>
