@@ -3,7 +3,7 @@
 #
 #   JOOMLA_ROOT=/path/to/joomla vendor/bin/phpstan analyse
 #
-# CI downloads the Joomla release named in .github/workflows/tests.yml.
+# CI runs it against the Joomla 5 and 6 releases named in .github/workflows/tests.yml.
 parameters:
     level: 6
     phpVersion: 80100
@@ -12,6 +12,9 @@ parameters:
         - src/com_m365calendar/administrator/src
         - src/com_m365calendar/site/src
         - src/plg_task_m365calendarsync/src
+        - src/com_m365calendar/administrator/services/provider.php
+        - src/plg_task_m365calendarsync/services/provider.php
+        - src/pkg/script.php
         - tests
     scanDirectories:
         - %env.JOOMLA_ROOT%/libraries/src
@@ -20,6 +23,9 @@ parameters:
         - %env.JOOMLA_ROOT%/administrator/components/com_actionlogs/src
     bootstrapFiles:
         - tests/phpstan-bootstrap.php
+    # Set by Joomla at runtime; the bootstrap only gives it a placeholder value.
+    dynamicConstantNames:
+        - JVERSION
     ignoreErrors:
         # Joomla types Factory::getApplication() and controllers' $this->app as the
         # generic CMSApplicationInterface. On the site (and in the backend for
@@ -38,3 +44,11 @@ parameters:
         -
             identifier: method.childReturnType
             path: src/com_m365calendar/administrator/src/Model/FeedtokenModel.php
+        # The task plugin's provider picks the constructor call at runtime. The
+        # config-only call is for Joomla 6+, where CMSPlugin::__construct($config);
+        # analysed against Joomla 5 that branch looks wrong, against 6 it does not.
+        -
+            identifier: argument.type
+            message: '#^Parameter \#1 \$dispatcher of class Joomla\\Plugin\\Task\\M365calendarsync\\Extension\\M365calendarsync constructor expects Joomla\\Event\\DispatcherInterface, array<mixed, mixed> given\.$#'
+            path: src/plg_task_m365calendarsync/services/provider.php
+            reportUnmatched: false

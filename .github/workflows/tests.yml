@@ -40,8 +40,9 @@ jobs:
     name: PHPStan (Joomla ${{ matrix.joomla }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        joomla: ['5.2.6']
+        joomla: ['5.2.6', '6.2.1']
     env:
       JOOMLA_ROOT: ${{ github.workspace }}/.joomla
     steps:
