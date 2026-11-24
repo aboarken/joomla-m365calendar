@@ -4,7 +4,9 @@ All notable changes to this project are documented here. The project uses
 [Semantic Versioning](https://semver.org/). Every version that changes the
 database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
-## [Unreleased]
+## [0.1.1] - 2026-11-24
+
+Published as a normal (latest) release; 0.1.0 was published as a pre-release. The extension code is unchanged from 0.1.0.
 
 ### Changed
 - Release workflow: releases are published as normal releases marked as latest, not as pre-releases.
@@ -35,4 +37,5 @@ First public release. Not yet tested on a live Joomla site.
 - Release workflow: pushing a tag `v<version>` builds the package and publishes it as a GitHub release.
 - Joomla 6 support for the task plugin's constructor (Joomla 5 still gets the dispatcher it requires).
 
+[0.1.1]: https://github.com/aboarken/joomla-m365calendar/releases/tag/v0.1.1
 [0.1.0]: https://github.com/aboarken/joomla-m365calendar/releases/tag/v0.1.0
