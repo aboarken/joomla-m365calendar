@@ -22,14 +22,14 @@ use Joomla\Registry\Registry;
 /**
  * Transport using Joomla's HTTP client (respects the site's proxy settings).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class JoomlaHttpTransport implements HttpTransportInterface
 {
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function request(string $method, string $url, array $headers = [], ?string $body = null, int $timeout = 30): HttpResponse
     {

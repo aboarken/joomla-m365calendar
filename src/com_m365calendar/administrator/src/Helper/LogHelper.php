@@ -25,7 +25,7 @@ use Psr\Log\LoggerInterface;
  * Log entries never contain tokens, feed URLs or event content: only status
  * codes, request-ids, calendar IDs, menu item IDs and user IDs.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class LogHelper
 {
@@ -33,7 +33,7 @@ final class LogHelper
      * Category for sync messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const CATEGORY_SYNC = 'com_m365calendar.sync';
 
@@ -41,7 +41,7 @@ final class LogHelper
      * Category for feed messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const CATEGORY_FEED = 'com_m365calendar.feed';
 
@@ -49,7 +49,7 @@ final class LogHelper
      * Whether the logger is registered.
      *
      * @var    boolean
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private static bool $registered = false;
 
@@ -58,7 +58,7 @@ final class LogHelper
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function register(): void
     {
@@ -82,7 +82,7 @@ final class LogHelper
      *
      * @return  LoggerInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function logger(): LoggerInterface
     {

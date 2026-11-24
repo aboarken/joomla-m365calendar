@@ -23,7 +23,7 @@ use M365Graph\Jwt\Base64Url;
 /**
  * Loads the certificate and private key from files outside the web root.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class CertificateLoader
 {
@@ -32,7 +32,7 @@ final class CertificateLoader
      *
      * @param   string  $webRoot  Web root the files must not be inside of.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly string $webRoot)
     {
@@ -49,7 +49,7 @@ final class CertificateLoader
      *
      * @throws  ConfigurationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function loadCertificateDer(string $path): string
     {
@@ -94,7 +94,7 @@ final class CertificateLoader
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function thumbprintS256(string $path): string
     {
@@ -110,7 +110,7 @@ final class CertificateLoader
      *
      * @throws  ConfigurationException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function loadPrivateKey(string $path): \OpenSSLAsymmetricKey
     {
@@ -139,7 +139,7 @@ final class CertificateLoader
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function keyMatchesCertificate(string $certificatePath, string $privateKeyPath): bool
     {

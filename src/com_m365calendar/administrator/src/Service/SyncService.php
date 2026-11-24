@@ -29,7 +29,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Does all syncing work. Used by the "Sync now" button and the task plugin.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class SyncService
 {
@@ -37,7 +37,7 @@ final class SyncService
      * Log category.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const LOG_CATEGORY = 'com_m365calendar.sync';
 
@@ -45,7 +45,7 @@ final class SyncService
      * Fields requested from Graph. Body, attendees and organizer are never requested.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const SELECT = 'id,subject,start,end,isAllDay,location,categories,sensitivity,showAs,isCancelled,webLink,lastModifiedDateTime';
 
@@ -53,7 +53,7 @@ final class SyncService
      * Page size requested from Graph.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const PAGE_SIZE = 100;
 
@@ -61,7 +61,7 @@ final class SyncService
      * Factory creating a Graph client from settings.
      *
      * @var    \Closure(ConnectionSettings): GraphClientInterface
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $clientFactory;
 
@@ -69,7 +69,7 @@ final class SyncService
      * Normalizer.
      *
      * @var    EventNormalizer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private EventNormalizer $normalizer;
 
@@ -77,7 +77,7 @@ final class SyncService
      * Clock.
      *
      * @var    \Closure(): \DateTimeImmutable
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $clock;
 
@@ -93,7 +93,7 @@ final class SyncService
      * @param   \Closure|null        $afterSync      Called after a run that stored data (cache cleaning).
      * @param   \Closure|null        $clock          Clock for tests.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         private readonly EventStoreInterface $store,
@@ -117,7 +117,7 @@ final class SyncService
      *
      * @return  SyncResult
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function syncAll(string $trigger = 'manual'): SyncResult
     {
@@ -183,7 +183,7 @@ final class SyncService
      *
      * @return  CalendarSyncResult
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function syncCalendar(GraphClientInterface $client, CalendarRef $calendar, \DateTimeImmutable $start, \DateTimeImmutable $end): CalendarSyncResult
     {
@@ -233,7 +233,7 @@ final class SyncService
      *
      * @return  SyncResult
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function testConnection(): SyncResult
     {
@@ -274,7 +274,7 @@ final class SyncService
      *
      * @return  array{0: \DateTimeImmutable, 1: \DateTimeImmutable}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function window(\DateTimeImmutable $now): array
     {
@@ -293,7 +293,7 @@ final class SyncService
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function errorKind(GraphException $e): string
     {
@@ -314,7 +314,7 @@ final class SyncService
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function statusMessage(GraphException $e): string
     {
@@ -339,7 +339,7 @@ final class SyncService
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function logGraphError(string $prefix, GraphException $e): void
     {
@@ -359,7 +359,7 @@ final class SyncService
      *
      * @return  GraphClientInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function createClient(): GraphClientInterface
     {
@@ -371,7 +371,7 @@ final class SyncService
      *
      * @return  \DateTimeImmutable
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function now(): \DateTimeImmutable
     {
@@ -385,7 +385,7 @@ final class SyncService
      *
      * @return  \DateTimeImmutable
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function lockExpiry(\DateTimeImmutable $now): \DateTimeImmutable
     {

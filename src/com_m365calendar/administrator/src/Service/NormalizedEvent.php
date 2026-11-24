@@ -20,7 +20,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
  * An event as stored locally. Only these fields are ever kept: no body,
  * attendees or organizer.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class NormalizedEvent
 {
@@ -39,7 +39,7 @@ final class NormalizedEvent
      * @param   string                   $webLink       Outlook on the web link (https only) or empty.
      * @param   \DateTimeImmutable|null  $lastModified  Last modified (UTC).
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly string $graphId,

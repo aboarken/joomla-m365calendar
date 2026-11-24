@@ -21,7 +21,7 @@ use Joomla\CMS\MVC\Model\AdminModel;
 /**
  * Feed token model; used to revoke (delete) tokens.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class FeedtokenModel extends AdminModel
 {
@@ -29,7 +29,7 @@ class FeedtokenModel extends AdminModel
      * The prefix to use with controller messages.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $text_prefix = 'COM_M365CALENDAR_FEEDTOKENS';
 
@@ -41,7 +41,7 @@ class FeedtokenModel extends AdminModel
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getForm($data = [], $loadData = true)
     {
@@ -55,7 +55,7 @@ class FeedtokenModel extends AdminModel
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function canDelete($record)
     {

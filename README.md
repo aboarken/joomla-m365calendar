@@ -326,7 +326,7 @@ Build the installable package:
 php build/build.php
 ```
 
-The build lints all PHP/XML/INI/JSON files, stamps the version into the manifests, creates the minified CSS/JS, zips the three extensions and wraps them in `dist/pkg_m365calendar-<version>.zip`, then prints its SHA-256 and SHA-384 (put the SHA-384 into `updates/pkg_m365calendar.xml`). `php build/build.php --version=1.0.1` overrides the version.
+The build lints all PHP/XML/INI/JSON files, stamps the version into the manifests, creates the minified CSS/JS, zips the three extensions and wraps them in `dist/pkg_m365calendar-<version>.zip`, then prints its SHA-256 and SHA-384 (put the SHA-384 into `updates/pkg_m365calendar.xml`). `php build/build.php --version=0.1.1` overrides the version. To publish a release, set the version in the manifests, add its CHANGELOG section, merge to `main`, then push a tag `v<version>`: the Release workflow builds the zip and creates the GitHub release.
 
 Versioning follows SemVer; every release adds an entry to `CHANGELOG.md` and, when the schema changes, `sql/updates/mysql/<version>.sql` and `sql/updates/postgresql/<version>.sql`.
 

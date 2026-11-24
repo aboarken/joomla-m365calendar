@@ -19,7 +19,7 @@ namespace M365Graph\Http;
 /**
  * Thin transport abstraction so the Graph client can be tested without network.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 interface HttpTransportInterface
 {
@@ -36,7 +36,7 @@ interface HttpTransportInterface
      *
      * @throws  \RuntimeException  On transport errors.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function request(string $method, string $url, array $headers = [], ?string $body = null, int $timeout = 30): HttpResponse;
 }

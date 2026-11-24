@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
 /**
  * Result of a sync run or a connection test.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class SyncResult
 {
@@ -27,7 +27,7 @@ final class SyncResult
      * Run completed (per-calendar results may contain errors).
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const DONE = 'done';
 
@@ -35,7 +35,7 @@ final class SyncResult
      * Another run holds the lock.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const LOCKED = 'locked';
 
@@ -43,7 +43,7 @@ final class SyncResult
      * Connection settings missing or invalid.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const NOT_CONFIGURED = 'not_configured';
 
@@ -51,7 +51,7 @@ final class SyncResult
      * Authentication failed before any calendar was processed.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const FAILED = 'failed';
 
@@ -59,7 +59,7 @@ final class SyncResult
      * Per-calendar results.
      *
      * @var    CalendarSyncResult[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private array $calendars = [];
 
@@ -69,7 +69,7 @@ final class SyncResult
      * @param   string  $state   One of the class constants.
      * @param   string  $reason  Machine-readable reason (e.g. ConfigurationException reason or error kind).
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(public readonly string $state = self::DONE, public readonly string $reason = '')
     {
@@ -82,7 +82,7 @@ final class SyncResult
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function add(CalendarSyncResult $result): void
     {
@@ -94,7 +94,7 @@ final class SyncResult
      *
      * @return  CalendarSyncResult[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getCalendars(): array
     {
@@ -106,7 +106,7 @@ final class SyncResult
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function isSuccess(): bool
     {
@@ -128,7 +128,7 @@ final class SyncResult
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function failedCount(): int
     {
@@ -140,7 +140,7 @@ final class SyncResult
      *
      * @return  integer
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function eventCount(): int
     {

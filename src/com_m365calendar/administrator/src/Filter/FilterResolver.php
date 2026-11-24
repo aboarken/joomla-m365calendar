@@ -23,7 +23,7 @@ namespace Joomla\Component\M365calendar\Administrator\Filter;
  * but never widen it. Visitor values outside the preset (a calendar or
  * category that the preset does not allow) are ignored.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class FilterResolver
 {
@@ -39,7 +39,7 @@ final class FilterResolver
      *
      * @return  EffectiveFilter
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function resolve(
         PresetFilter $preset,
@@ -155,7 +155,7 @@ final class FilterResolver
      *
      * @return  \DateTimeImmutable
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function later(?\DateTimeImmutable $a, \DateTimeImmutable $b): \DateTimeImmutable
     {
@@ -170,7 +170,7 @@ final class FilterResolver
      *
      * @return  \DateTimeImmutable
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function earlier(?\DateTimeImmutable $a, \DateTimeImmutable $b): \DateTimeImmutable
     {
@@ -185,7 +185,7 @@ final class FilterResolver
      *
      * @return  \DateTimeImmutable
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function dayStart(string $date, \DateTimeZone $tz): \DateTimeImmutable
     {

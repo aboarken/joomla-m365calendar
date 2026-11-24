@@ -23,7 +23,7 @@ use M365Graph\ConnectionSettings;
  * Builds the RS256-signed client assertion JWT for the client credentials flow.
  *
  * @link   https://learn.microsoft.com/entra/identity-platform/certificate-credentials
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class ClientAssertionBuilder
 {
@@ -31,7 +31,7 @@ final class ClientAssertionBuilder
      * Maximum lifetime of an assertion, in seconds (10 minutes).
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MAX_LIFETIME = 600;
 
@@ -39,7 +39,7 @@ final class ClientAssertionBuilder
      * Clock returning a UNIX timestamp.
      *
      * @var    \Closure(): int
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $clock;
 
@@ -50,7 +50,7 @@ final class ClientAssertionBuilder
      * @param   integer             $lifetime  Lifetime in seconds (capped at 600).
      * @param   (\Closure(): int)|null  $clock  Clock for tests.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         private readonly CertificateLoader $loader,
@@ -67,7 +67,7 @@ final class ClientAssertionBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function tokenEndpoint(string $tenantId): string
     {
@@ -84,7 +84,7 @@ final class ClientAssertionBuilder
      * @throws  \M365Graph\Exception\ConfigurationException
      * @throws  \RuntimeException
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function build(ConnectionSettings $settings): string
     {
@@ -122,7 +122,7 @@ final class ClientAssertionBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function uuidV4(): string
     {
@@ -140,7 +140,7 @@ final class ClientAssertionBuilder
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function json(array $data): string
     {

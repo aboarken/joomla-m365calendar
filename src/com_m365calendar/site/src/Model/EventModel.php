@@ -28,7 +28,7 @@ use Joomla\Registry\Registry;
  * Single event, reachable only through a Calendar menu item and only if it
  * matches that menu item's preset filters and the visitor's access levels.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class EventModel extends ItemModel
 {
@@ -36,7 +36,7 @@ class EventModel extends ItemModel
      * Model context string.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $_context = 'com_m365calendar.event';
 
@@ -45,7 +45,7 @@ class EventModel extends ItemModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function populateState()
     {
@@ -66,7 +66,7 @@ class EventModel extends ItemModel
      *
      * @return  object|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getItem($pk = null)
     {

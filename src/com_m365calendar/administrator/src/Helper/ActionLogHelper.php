@@ -28,7 +28,7 @@ use Joomla\CMS\MVC\Factory\MVCFactoryServiceInterface;
  * install). This helper logs the component's own actions: manual sync,
  * connection test and feed token revocation.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class ActionLogHelper
 {
@@ -40,7 +40,7 @@ final class ActionLogHelper
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function log(string $messageKey, array $extra = []): void
     {

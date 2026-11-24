@@ -27,7 +27,7 @@ use Joomla\Database\QueryInterface;
 /**
  * Read access to the local event tables for the site (never calls Graph).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class EventRepository
 {
@@ -35,7 +35,7 @@ class EventRepository
      * Allowed sort orders.
      *
      * @var    array<string, string[]>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const SORTS = [
         'start_asc'  => ['e.start_utc ASC', 'e.id ASC'],
@@ -47,7 +47,7 @@ class EventRepository
      * Calendars loaded in this request.
      *
      * @var    object[]|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private ?array $calendars = null;
 
@@ -56,7 +56,7 @@ class EventRepository
      *
      * @param   DatabaseInterface  $db  Database.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly DatabaseInterface $db)
     {
@@ -69,7 +69,7 @@ class EventRepository
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function publishedCalendars(): array
     {
@@ -94,7 +94,7 @@ class EventRepository
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function accessibleCalendars(array $viewLevels): array
     {
@@ -115,7 +115,7 @@ class EventRepository
      *
      * @return  QueryInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function eventsQuery(EffectiveFilter $filter, array $viewLevels, string $sort = 'start_asc'): QueryInterface
     {
@@ -160,7 +160,7 @@ class EventRepository
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function events(EffectiveFilter $filter, array $viewLevels, string $sort, int $limit): array
     {
@@ -176,7 +176,7 @@ class EventRepository
      *
      * @return  object|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function event(int $id, EffectiveFilter $filter, array $viewLevels): ?object
     {
@@ -194,7 +194,7 @@ class EventRepository
      *
      * @return  string[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function categories(array $calendarIds): array
     {
@@ -226,7 +226,7 @@ class EventRepository
      *
      * @return  array<int, mixed>
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function cached(string $key, callable $loader): array
     {

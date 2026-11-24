@@ -29,7 +29,7 @@ use Joomla\Component\M365calendar\Site\Helper\EventHelper;
 /**
  * The "Calendar" page (list or month).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class HtmlView extends BaseHtmlView
 {
@@ -37,7 +37,7 @@ class HtmlView extends BaseHtmlView
      * Events.
      *
      * @var    object[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $items = [];
 
@@ -45,7 +45,7 @@ class HtmlView extends BaseHtmlView
      * Pagination.
      *
      * @var    \Joomla\CMS\Pagination\Pagination|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $pagination;
 
@@ -53,7 +53,7 @@ class HtmlView extends BaseHtmlView
      * Model state.
      *
      * @var    \Joomla\Registry\Registry
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $state;
 
@@ -61,7 +61,7 @@ class HtmlView extends BaseHtmlView
      * Merged params.
      *
      * @var    \Joomla\Registry\Registry
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $params;
 
@@ -69,7 +69,7 @@ class HtmlView extends BaseHtmlView
      * "list" or "month".
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $mode = 'list';
 
@@ -77,7 +77,7 @@ class HtmlView extends BaseHtmlView
      * Month grid in month mode.
      *
      * @var    array<string, mixed>|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $month;
 
@@ -85,7 +85,7 @@ class HtmlView extends BaseHtmlView
      * Calendar options for the visitor filter.
      *
      * @var    object[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $calendarOptions = [];
 
@@ -93,7 +93,7 @@ class HtmlView extends BaseHtmlView
      * Category options for the visitor filter.
      *
      * @var    string[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $categoryOptions = [];
 
@@ -101,7 +101,7 @@ class HtmlView extends BaseHtmlView
      * Current visitor filter.
      *
      * @var    \Joomla\Component\M365calendar\Administrator\Filter\VisitorFilter
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $visitor;
 
@@ -109,7 +109,7 @@ class HtmlView extends BaseHtmlView
      * Menu item ID.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $itemId = 0;
 
@@ -117,7 +117,7 @@ class HtmlView extends BaseHtmlView
      * Data for the subscribe layout (null when hidden).
      *
      * @var    array<string, mixed>|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $subscription;
 
@@ -125,7 +125,7 @@ class HtmlView extends BaseHtmlView
      * Page class suffix.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $pageclass_sfx = '';
 
@@ -136,7 +136,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($tpl = null): void
     {
@@ -180,7 +180,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  array<string, mixed>|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function buildSubscription(): ?array
     {
@@ -236,7 +236,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function webcal(string $url): string
     {
@@ -248,7 +248,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function prepareDocument(): void
     {

@@ -23,7 +23,7 @@ namespace Joomla\Component\M365calendar\Administrator\Feed;
  * placed in the feed URL, and only its SHA-256 hash is stored. A token only
  * identifies whose feed to build: it never logs anyone in.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class FeedTokenService
 {
@@ -31,7 +31,7 @@ final class FeedTokenService
      * Clock.
      *
      * @var    \Closure(): \DateTimeImmutable
-     * @since  1.0.0
+     * @since  0.1.0
      */
     private \Closure $clock;
 
@@ -41,7 +41,7 @@ final class FeedTokenService
      * @param   FeedTokenStoreInterface  $store  Storage.
      * @param   \Closure|null            $clock  Clock for tests.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly FeedTokenStoreInterface $store, ?\Closure $clock = null)
     {
@@ -55,7 +55,7 @@ final class FeedTokenService
      *
      * @return  string  SHA-256 hex.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function hash(string $token): string
     {
@@ -69,7 +69,7 @@ final class FeedTokenService
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function isWellFormed(string $token): bool
     {
@@ -83,7 +83,7 @@ final class FeedTokenService
      *
      * @return  string  The plain token; show it once and never store it.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function issue(int $userId): string
     {
@@ -104,7 +104,7 @@ final class FeedTokenService
      *
      * @return  string  The new plain token.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function reset(int $userId): string
     {
@@ -118,7 +118,7 @@ final class FeedTokenService
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function hasToken(int $userId): bool
     {
@@ -132,7 +132,7 @@ final class FeedTokenService
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function revoke(int $userId): void
     {
@@ -146,7 +146,7 @@ final class FeedTokenService
      *
      * @return  integer|null  User ID, or null when unknown.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function resolveUserId(string $token): ?int
     {

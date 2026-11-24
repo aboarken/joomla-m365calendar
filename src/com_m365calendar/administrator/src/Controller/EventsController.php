@@ -26,7 +26,7 @@ use Joomla\Component\M365calendar\Administrator\Helper\SyncMessageHelper;
 /**
  * "Sync now" and "Test connection" actions (POST, CSRF token, m365calendar.sync).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class EventsController extends BaseController
 {
@@ -35,7 +35,7 @@ class EventsController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function sync(): void
     {
@@ -58,7 +58,7 @@ class EventsController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function test(): void
     {
@@ -83,7 +83,7 @@ class EventsController extends BaseController
      *
      * @throws  \Exception
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function authoriseSync(): void
     {
@@ -99,7 +99,7 @@ class EventsController extends BaseController
      *
      * @return  M365calendarComponent
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function getComponent(): M365calendarComponent
     {

@@ -28,7 +28,7 @@ use M365Graph\Exception\ConfigurationException;
  * readable, be outside JPATH_ROOT and contain a parseable certificate or
  * RSA private key. Empty is allowed (not configured yet).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365keyfileRule extends FormRule
 {
@@ -45,7 +45,7 @@ class M365keyfileRule extends FormRule
      *
      * @throws  \UnexpectedValueException  With a translated message when invalid.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function test(\SimpleXMLElement $element, $value, $group = null, ?Registry $input = null, ?Form $form = null)
     {

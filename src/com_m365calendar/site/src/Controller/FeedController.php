@@ -44,7 +44,7 @@ use Joomla\Database\DatabaseInterface;
  *
  * Feed URLs and tokens are never logged; only menu item and user IDs.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class FeedController extends BaseController
 {
@@ -52,7 +52,7 @@ class FeedController extends BaseController
      * Feed cache lifetime in minutes.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const CACHE_MINUTES = 15;
 
@@ -60,7 +60,7 @@ class FeedController extends BaseController
      * Requests per minute and IP address.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const LIMIT_PER_IP = 60;
 
@@ -68,7 +68,7 @@ class FeedController extends BaseController
      * Requests per minute and token.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const LIMIT_PER_TOKEN = 20;
 
@@ -76,7 +76,7 @@ class FeedController extends BaseController
      * Maximum events in a feed.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MAX_EVENTS = 2000;
 
@@ -84,7 +84,7 @@ class FeedController extends BaseController
      * Session key holding a newly created personal token until it is shown once.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const SESSION_KEY = 'com_m365calendar.feedtoken.new';
 
@@ -93,7 +93,7 @@ class FeedController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function serve(): void
     {
@@ -191,7 +191,7 @@ class FeedController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function event(): void
     {
@@ -244,7 +244,7 @@ class FeedController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function token(): void
     {
@@ -284,7 +284,7 @@ class FeedController extends BaseController
      *
      * @return  array{body: string, etag: string, modified: int}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function buildFeed(MenuItem $menu, string $mode, array $guestLevels, array $levels): array
     {
@@ -337,7 +337,7 @@ class FeedController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function sendCalendar(array $payload, bool $public, string $filename, bool $attachment): void
     {
@@ -376,7 +376,7 @@ class FeedController extends BaseController
      *
      * @return  MenuItem|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function calendarMenuItem(): ?MenuItem
     {
@@ -395,7 +395,7 @@ class FeedController extends BaseController
      *
      * @return  FeedAccessResolver
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function accessResolver(): FeedAccessResolver
     {
@@ -423,7 +423,7 @@ class FeedController extends BaseController
      *
      * @return  RateLimiter
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function rateLimiter(): RateLimiter
     {
@@ -445,7 +445,7 @@ class FeedController extends BaseController
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function respond(int $status, string $body = '', array $headers = []): void
     {

@@ -25,7 +25,7 @@ use Joomla\DI\ServiceProviderInterface;
 /**
  * Install script of pkg_m365calendar.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 return new class () implements ServiceProviderInterface {
     /**
@@ -35,7 +35,7 @@ return new class () implements ServiceProviderInterface {
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function register(Container $container): void
     {
@@ -46,7 +46,7 @@ return new class () implements ServiceProviderInterface {
                  * Minimum Joomla version.
                  *
                  * @var    string
-                 * @since  1.0.0
+                 * @since  0.1.0
                  */
                 private const MIN_JOOMLA = '5.0.0';
 
@@ -54,7 +54,7 @@ return new class () implements ServiceProviderInterface {
                  * Minimum PHP version.
                  *
                  * @var    string
-                 * @since  1.0.0
+                 * @since  0.1.0
                  */
                 private const MIN_PHP = '8.1.0';
 
@@ -62,7 +62,7 @@ return new class () implements ServiceProviderInterface {
                  * Tables of the component.
                  *
                  * @var    string[]
-                 * @since  1.0.0
+                 * @since  0.1.0
                  */
                 private const TABLES = [
                     '#__m365calendar_event_categories',
@@ -78,7 +78,7 @@ return new class () implements ServiceProviderInterface {
                  * @param   AdministratorApplication  $app  The application.
                  * @param   DatabaseInterface         $db   The database.
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function __construct(private AdministratorApplication $app, private DatabaseInterface $db)
                 {
@@ -91,7 +91,7 @@ return new class () implements ServiceProviderInterface {
                  *
                  * @return  boolean
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function install(InstallerAdapter $adapter): bool
                 {
@@ -105,7 +105,7 @@ return new class () implements ServiceProviderInterface {
                  *
                  * @return  boolean
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function update(InstallerAdapter $adapter): bool
                 {
@@ -121,7 +121,7 @@ return new class () implements ServiceProviderInterface {
                  *
                  * @return  boolean
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function uninstall(InstallerAdapter $adapter): bool
                 {
@@ -168,7 +168,7 @@ return new class () implements ServiceProviderInterface {
                  *
                  * @return  boolean
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function preflight(string $type, InstallerAdapter $adapter): bool
                 {
@@ -205,7 +205,7 @@ return new class () implements ServiceProviderInterface {
                  *
                  * @return  boolean
                  *
-                 * @since   1.0.0
+                 * @since   0.1.0
                  */
                 public function postflight(string $type, InstallerAdapter $adapter): bool
                 {

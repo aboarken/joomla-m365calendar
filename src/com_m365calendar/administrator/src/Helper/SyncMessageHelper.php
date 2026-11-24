@@ -22,7 +22,7 @@ use Joomla\Component\M365calendar\Administrator\Service\SyncResult;
 /**
  * Turns sync/test results into translated admin messages.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class SyncMessageHelper
 {
@@ -34,7 +34,7 @@ final class SyncMessageHelper
      *
      * @return  array<int, array{0: string, 1: string}>  [message, type] pairs.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function messages(SyncResult $result, bool $test = false): array
     {
@@ -90,7 +90,7 @@ final class SyncMessageHelper
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function summary(SyncResult $result): string
     {
@@ -108,7 +108,7 @@ final class SyncMessageHelper
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function reason(string $reason): string
     {

@@ -43,7 +43,7 @@ use Psr\Container\ContainerInterface;
  * Exposes the SyncService so the task plugin can use it without duplicating
  * any sync logic.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365calendarComponent extends MVCComponent implements BootableExtensionInterface, RouterServiceInterface, DatabaseAwareInterface
 {
@@ -54,7 +54,7 @@ class M365calendarComponent extends MVCComponent implements BootableExtensionInt
      * Cache group for generated feeds.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const FEED_CACHE_GROUP = CacheHelper::GROUP_FEED;
 
@@ -65,7 +65,7 @@ class M365calendarComponent extends MVCComponent implements BootableExtensionInt
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function boot(ContainerInterface $container): void
     {
@@ -76,7 +76,7 @@ class M365calendarComponent extends MVCComponent implements BootableExtensionInt
      *
      * @return  SyncService
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getSyncService(): SyncService
     {
@@ -101,7 +101,7 @@ class M365calendarComponent extends MVCComponent implements BootableExtensionInt
      *
      * @return  FeedTokenService
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getFeedTokenService(): FeedTokenService
     {

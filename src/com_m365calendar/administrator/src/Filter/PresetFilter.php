@@ -22,7 +22,7 @@ use Joomla\Registry\Registry;
  * Preset filters of a Calendar menu item. Read only from the menu item's
  * params, never from the request.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class PresetFilter
 {
@@ -40,7 +40,7 @@ final class PresetFilter
      * @param   string     $dateTo        Fixed to (Y-m-d, inclusive).
      * @param   string     $eventType     all, allday, timed.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly array $calendarIds = [],
@@ -63,7 +63,7 @@ final class PresetFilter
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fromParams(Registry $params): self
     {
@@ -96,7 +96,7 @@ final class PresetFilter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function oneOf(string $value, array $allowed, string $default): string
     {
@@ -110,7 +110,7 @@ final class PresetFilter
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function date(string $value): string
     {

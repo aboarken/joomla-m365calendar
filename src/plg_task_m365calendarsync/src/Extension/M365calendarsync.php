@@ -29,7 +29,7 @@ use Joomla\Event\SubscriberInterface;
  *
  * Thin wrapper: all work is done by com_m365calendar's SyncService.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class M365calendarsync extends CMSPlugin implements SubscriberInterface
 {
@@ -39,7 +39,7 @@ final class M365calendarsync extends CMSPlugin implements SubscriberInterface
      * Task routines of this plugin. The routine ID is unique: m365calendar.sync.
      *
      * @var    array<string, array<string, string>>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected const TASKS_MAP = [
         'm365calendar.sync' => [
@@ -52,7 +52,7 @@ final class M365calendarsync extends CMSPlugin implements SubscriberInterface
      * Load the language file on instantiation.
      *
      * @var    boolean
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $autoloadLanguage = true;
 
@@ -61,7 +61,7 @@ final class M365calendarsync extends CMSPlugin implements SubscriberInterface
      *
      * @return  array<string, string>
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function getSubscribedEvents(): array
     {
@@ -78,7 +78,7 @@ final class M365calendarsync extends CMSPlugin implements SubscriberInterface
      *
      * @return  integer  Status code.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function sync(ExecuteTaskEvent $event): int
     {

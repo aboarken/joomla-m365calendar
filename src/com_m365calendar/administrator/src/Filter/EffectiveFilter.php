@@ -22,7 +22,7 @@ namespace Joomla\Component\M365calendar\Administrator\Filter;
  * Time constraints are expressed as three bounds that only ever get tighter:
  * end_utc > $endAfter, start_utc < $startBefore, end_utc <= $endBefore.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class EffectiveFilter
 {
@@ -40,7 +40,7 @@ final class EffectiveFilter
      * @param   boolean|null             $allDay         true = all-day only, false = timed only, null = both.
      * @param   boolean                  $impossible     Nothing can match.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly array $calendarIds,
@@ -64,7 +64,7 @@ final class EffectiveFilter
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function withRange(\DateTimeImmutable $from, \DateTimeImmutable $to): self
     {
@@ -81,7 +81,7 @@ final class EffectiveFilter
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function withCalendars(array $calendarIds): self
     {
@@ -93,7 +93,7 @@ final class EffectiveFilter
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function isImpossible(): bool
     {
@@ -115,7 +115,7 @@ final class EffectiveFilter
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private function copy(mixed ...$changes): self
     {

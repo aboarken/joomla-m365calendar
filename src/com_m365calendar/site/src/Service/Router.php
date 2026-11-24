@@ -31,7 +31,7 @@ use Joomla\CMS\Menu\AbstractMenu;
  * /{menu-alias}/{id}       Event detail, under the Calendar menu item it was opened from
  * /{menu-alias}/feed.ics   Subscription feed of that menu item
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class Router extends RouterView
 {
@@ -41,7 +41,7 @@ class Router extends RouterView
      * @param   SiteApplication  $app   The application object.
      * @param   AbstractMenu     $menu  The menu object to work with.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(SiteApplication $app, AbstractMenu $menu)
     {
@@ -68,7 +68,7 @@ class Router extends RouterView
      *
      * @return  array<int, string>
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getEventSegment($id, $query)
     {
@@ -85,7 +85,7 @@ class Router extends RouterView
      *
      * @return  integer|false
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getEventId($segment, $query)
     {

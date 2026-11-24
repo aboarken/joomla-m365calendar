@@ -4,7 +4,7 @@
  * Builds the installable package: dist/pkg_m365calendar-<version>.zip
  * containing lib_m365graph.zip, com_m365calendar.zip and plg_task_m365calendarsync.zip.
  *
- * Usage: php build/build.php [--version=1.0.0]
+ * Usage: php build/build.php [--version=0.1.0]
  *
  * @copyright   (C) 2026 M365 Calendar contributors
  * @license     GNU General Public License version 2 or later; see LICENSE.txt

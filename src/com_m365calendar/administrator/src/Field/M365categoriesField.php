@@ -24,7 +24,7 @@ use Joomla\Database\DatabaseAwareTrait;
 /**
  * List of the Outlook categories found in synced events.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365categoriesField extends ListField implements DatabaseAwareInterface
 {
@@ -34,7 +34,7 @@ class M365categoriesField extends ListField implements DatabaseAwareInterface
      * The form field type.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $type = 'M365categories';
 
@@ -43,7 +43,7 @@ class M365categoriesField extends ListField implements DatabaseAwareInterface
      *
      * @return  object[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getOptions()
     {

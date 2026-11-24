@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
 /**
  * Persistence used by the SyncService.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 interface EventStoreInterface
 {
@@ -32,7 +32,7 @@ interface EventStoreInterface
      *
      * @return  boolean  True when the lock was acquired (or refreshed by the same owner).
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function acquireLock(string $owner, \DateTimeImmutable $now, \DateTimeImmutable $until): bool;
 
@@ -43,7 +43,7 @@ interface EventStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function releaseLock(string $owner): void;
 
@@ -52,7 +52,7 @@ interface EventStoreInterface
      *
      * @return  CalendarRef[]
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function getPublishedCalendars(): array;
 
@@ -66,7 +66,7 @@ interface EventStoreInterface
      *
      * @return  integer  Number of stored events.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function replaceEvents(int $calendarId, array $events, \DateTimeImmutable $now): int;
 
@@ -81,7 +81,7 @@ interface EventStoreInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function recordStatus(int $calendarId, string $status, string $message, ?int $count, \DateTimeImmutable $now): void;
 
@@ -90,7 +90,7 @@ interface EventStoreInterface
      *
      * @return  integer  Rows deleted.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function deleteOrphanFeedTokens(): int;
 }

@@ -24,7 +24,7 @@ use Joomla\CMS\Component\Router\Rules\RulesInterface;
  * With "Add suffix to URLs" on, the core router appends ".ics" from the
  * format variable; otherwise the segment itself is "feed.ics".
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class FeedRule implements RulesInterface
 {
@@ -33,7 +33,7 @@ class FeedRule implements RulesInterface
      *
      * @param   boolean  $sefSuffix  Whether the site adds format suffixes.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly bool $sefSuffix)
     {
@@ -46,7 +46,7 @@ class FeedRule implements RulesInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function preprocess(&$query)
     {
@@ -60,7 +60,7 @@ class FeedRule implements RulesInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function build(&$query, &$segments)
     {
@@ -87,7 +87,7 @@ class FeedRule implements RulesInterface
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function parse(&$segments, &$vars)
     {

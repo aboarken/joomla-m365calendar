@@ -24,7 +24,7 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 /**
  * Read-only events view with sync status and the sync/test buttons.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class HtmlView extends BaseHtmlView
 {
@@ -32,7 +32,7 @@ class HtmlView extends BaseHtmlView
      * Items.
      *
      * @var    object[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $items = [];
 
@@ -40,7 +40,7 @@ class HtmlView extends BaseHtmlView
      * Pagination.
      *
      * @var    \Joomla\CMS\Pagination\Pagination
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $pagination;
 
@@ -48,7 +48,7 @@ class HtmlView extends BaseHtmlView
      * Model state.
      *
      * @var    \Joomla\Registry\Registry
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $state;
 
@@ -56,7 +56,7 @@ class HtmlView extends BaseHtmlView
      * Filter form.
      *
      * @var    \Joomla\CMS\Form\Form|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public $filterForm;
 
@@ -64,7 +64,7 @@ class HtmlView extends BaseHtmlView
      * Active filters.
      *
      * @var    array<string, mixed>
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public $activeFilters = [];
 
@@ -72,7 +72,7 @@ class HtmlView extends BaseHtmlView
      * Sync status per calendar.
      *
      * @var    object[]
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $syncStatus = [];
 
@@ -80,7 +80,7 @@ class HtmlView extends BaseHtmlView
      * Lock row.
      *
      * @var    object|null
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $lock;
 
@@ -88,7 +88,7 @@ class HtmlView extends BaseHtmlView
      * Whether the user may sync.
      *
      * @var    boolean
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $canSync = false;
 
@@ -99,7 +99,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function display($tpl = null): void
     {
@@ -129,7 +129,7 @@ class HtmlView extends BaseHtmlView
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function addToolbar(): void
     {

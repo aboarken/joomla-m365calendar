@@ -4,18 +4,9 @@ All notable changes to this project are documented here. The project uses
 [Semantic Versioning](https://semver.org/). Every version that changes the
 database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
 
-## [Unreleased]
+## [0.1.0] - 2026-11-24
 
-### Added
-- GitHub Actions workflow: PHPUnit on PHP 8.1–8.5, PHP_CodeSniffer, package build artifact.
-- PHPStan (level 6) in CI, analysed against the Joomla 5.2.6 and 6.2.1 releases, including the service providers and the package install script.
-
-### Fixed
-- The connection settings form filter implemented a non-existent interface (`Joomla\CMS\Form\Filter\FormFilterInterface` instead of `Joomla\CMS\Form\FormFilterInterface`), which would cause a fatal error when the class is loaded (saving the component Options). Found by PHPStan.
-- The action log helper checks that com_actionlogs provides an MVC factory and an ActionlogModel before using them.
-- The task plugin is created without the deprecated dispatcher argument on Joomla 6 (that call style is removed in Joomla 7); Joomla 5 still gets the dispatcher it requires.
-
-## [1.0.0] - 2026-11-24
+First public pre-release. Not yet tested on a live Joomla site.
 
 ### Added
 - `pkg_m365calendar` installing, in order: `lib_m365graph`, `com_m365calendar`,
@@ -34,3 +25,8 @@ database schema adds `sql/updates/{mysql,postgresql}/<version>.sql`.
   - Subscription feeds (public or personal), single-event `.ics` downloads and
     Outlook / Google "Add to my calendar" links.
 - `plg_task_m365calendarsync`: "Sync Microsoft 365 calendars" routine (`m365calendar.sync`).
+- GitHub Actions: PHPUnit on PHP 8.1–8.5, PHPStan (level 6) against Joomla 5.2.6 and 6.2.1, PHP_CodeSniffer, and a package build.
+- Release workflow: pushing a tag `v<version>` builds the package and publishes it as a GitHub release.
+- Joomla 6 support for the task plugin's constructor (Joomla 5 still gets the dispatcher it requires).
+
+[0.1.0]: https://github.com/aboarken/joomla-m365calendar/releases/tag/v0.1.0

@@ -29,7 +29,7 @@ use Joomla\DI\ServiceProviderInterface;
 /**
  * Service provider for com_m365calendar.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 return new class () implements ServiceProviderInterface {
     /**
@@ -39,7 +39,7 @@ return new class () implements ServiceProviderInterface {
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function register(Container $container): void
     {

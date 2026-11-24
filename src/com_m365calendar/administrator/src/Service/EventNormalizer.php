@@ -22,7 +22,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
  * Skips private/personal/confidential and cancelled events, converts all
  * times to UTC and strips control characters from untrusted text.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class EventNormalizer
 {
@@ -30,7 +30,7 @@ final class EventNormalizer
      * Maximum categories kept per event.
      *
      * @var    integer
-     * @since  1.0.0
+     * @since  0.1.0
      */
     public const MAX_CATEGORIES = 25;
 
@@ -42,7 +42,7 @@ final class EventNormalizer
      *
      * @return  NormalizedEvent|null  Null when the event must not be stored.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function normalize(array $item, string $fallbackTz = 'UTC'): ?NormalizedEvent
     {
@@ -134,7 +134,7 @@ final class EventNormalizer
      *
      * @return  \DateTimeImmutable|null
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function parseDateTime(mixed $value, string $fallbackTz, bool $allDay): ?\DateTimeImmutable
     {
@@ -171,7 +171,7 @@ final class EventNormalizer
      *
      * @return  \DateTimeZone
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     private static function zone(mixed $name, string $fallback): \DateTimeZone
     {
@@ -196,7 +196,7 @@ final class EventNormalizer
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function cleanText(string $text, int $length): string
     {
@@ -217,7 +217,7 @@ final class EventNormalizer
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function cleanUrl(string $url): string
     {

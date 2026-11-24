@@ -27,7 +27,7 @@ use Joomla\CMS\Language\Text;
  * input; the M365connection form filter then keeps the stored value, so the
  * setting cannot be changed by posting it either.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class M365connectionField extends TextField
 {
@@ -35,7 +35,7 @@ class M365connectionField extends TextField
      * The form field type.
      *
      * @var    string
-     * @since  1.0.0
+     * @since  0.1.0
      */
     protected $type = 'M365connection';
 
@@ -44,7 +44,7 @@ class M365connectionField extends TextField
      *
      * @return  string
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getInput()
     {
@@ -62,7 +62,7 @@ class M365connectionField extends TextField
      *
      * @return  boolean
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function canEdit(): bool
     {

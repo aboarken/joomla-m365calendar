@@ -22,7 +22,7 @@ use Joomla\Database\ParameterType;
 /**
  * Database implementation of the feed token storage.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
 {
@@ -31,7 +31,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
      *
      * @param   DatabaseInterface  $db  Database.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(private readonly DatabaseInterface $db)
     {
@@ -40,7 +40,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function findByHash(string $hash): ?array
     {
@@ -59,7 +59,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function hasToken(int $userId): bool
     {
@@ -76,7 +76,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function replace(int $userId, string $hash, \DateTimeImmutable $now): void
     {
@@ -108,7 +108,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function touch(string $hash, \DateTimeImmutable $now): void
     {
@@ -128,7 +128,7 @@ final class DatabaseFeedTokenStore implements FeedTokenStoreInterface
     /**
      * {@inheritDoc}
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function deleteForUser(int $userId): void
     {

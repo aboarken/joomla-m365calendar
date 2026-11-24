@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Service;
 /**
  * Result for one calendar.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class CalendarSyncResult
 {
@@ -34,7 +34,7 @@ final class CalendarSyncResult
      * @param   integer  $statusCode  HTTP status code.
      * @param   string   $requestId   Graph request-id.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly int $calendarId,

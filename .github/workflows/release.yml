@@ -1,0 +1,81 @@
+name: Release
+
+# Push a tag such as v0.1.0 (matching <version> in src/pkg/pkg_m365calendar.xml)
+# to build the package and publish it as a GitHub release.
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: openssl, mbstring, zip
+          coverage: none
+
+      - name: Check that the tag matches the package version
+        run: |
+          tag_version="${GITHUB_REF_NAME#v}"
+          manifest_version="$(php -r 'echo (string) simplexml_load_file("src/pkg/pkg_m365calendar.xml")->version;')"
+          if [ "$tag_version" != "$manifest_version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match the manifest version $manifest_version"
+            exit 1
+          fi
+          grep -q "^## \[$tag_version\]" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for $tag_version"; exit 1; }
+
+      - name: Install dev dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Run unit tests
+        run: vendor/bin/phpunit
+
+      - name: Build package
+        run: php build/build.php
+
+      - name: Checksums
+        working-directory: dist
+        run: |
+          sha256sum pkg_m365calendar-*.zip > SHA256SUMS
+          sha384sum pkg_m365calendar-*.zip > SHA384SUMS
+          cat SHA256SUMS SHA384SUMS
+
+      - name: Release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '
+            $0 ~ "^## \\[" v "\\]" { on = 1; next }
+            on && /^## \[/ { exit }
+            on && /^\[[^]]+\]: / { next }
+            on { print }
+          ' CHANGELOG.md > release-notes.md
+          {
+            echo
+            echo "### Install"
+            echo "Download \`pkg_m365calendar-$version.zip\` below and install it in Joomla under System → Install → Extensions."
+            echo
+            echo "SHA-384 (for the update server): \`$(cut -d' ' -f1 dist/SHA384SUMS)\`"
+          } >> release-notes.md
+          cat release-notes.md
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          prerelease=""
+          # 0.x versions are published as pre-releases.
+          case "$version" in 0.*) prerelease="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/pkg_m365calendar-$version.zip" dist/SHA256SUMS dist/SHA384SUMS \
+            --title "Microsoft 365 Calendar $version" \
+            --notes-file release-notes.md \
+            --verify-tag $prerelease

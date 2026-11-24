@@ -19,7 +19,7 @@ namespace Joomla\Component\M365calendar\Administrator\Filter;
 /**
  * Filters chosen by a visitor (GET, sticky per menu item). Untrusted.
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 final class VisitorFilter
 {
@@ -35,7 +35,7 @@ final class VisitorFilter
      * @param   string   $eventType   all, allday, timed.
      * @param   string   $timeRange   all, upcoming, past.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct(
         public readonly string $search = '',
@@ -56,7 +56,7 @@ final class VisitorFilter
      *
      * @return  self
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public static function fromArray(array $values): self
     {

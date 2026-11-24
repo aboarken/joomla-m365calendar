@@ -24,7 +24,7 @@ use Joomla\Database\QueryInterface;
 /**
  * List of users with a personal feed token (no token data is shown).
  *
- * @since  1.0.0
+ * @since  0.1.0
  */
 class FeedtokensModel extends ListModel
 {
@@ -34,7 +34,7 @@ class FeedtokensModel extends ListModel
      * @param   array<string, mixed>      $config   An optional associative array of configuration settings.
      * @param   MVCFactoryInterface|null  $factory  The factory.
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     public function __construct($config = [], ?MVCFactoryInterface $factory = null)
     {
@@ -53,7 +53,7 @@ class FeedtokensModel extends ListModel
      *
      * @return  void
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function populateState($ordering = 't.created', $direction = 'DESC')
     {
@@ -65,7 +65,7 @@ class FeedtokensModel extends ListModel
      *
      * @return  QueryInterface
      *
-     * @since   1.0.0
+     * @since   0.1.0
      */
     protected function getListQuery()
     {
